@@ -16,7 +16,7 @@
 		<a href="#" style="line-height: 30px; text-decoration: none; font-size: 17px; color: #8d8d8d; font-family: 'Poppins', sans-serif;">Privacy Policy</a>
 	</div>
 	<div style="padding-top: 85px; width: 20%; float: left;  text-align: center;">
-  		<img style=" width: 250px;" src="logotsw.png">
+  		<img style=" width: 250px;" src="imgs/logotsw.png">
 	</div>
 	<div style="width: 40%; float: left; text-align: center; padding-top: 55px;">
 		<p style="font-size: 30px; color: black; font-family: 'Poppins', sans-serif; line-height: 10px;">Informazioni di contatto</p>

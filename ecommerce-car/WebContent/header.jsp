@@ -14,11 +14,11 @@
   <a style="text-decoration: none; font-size: 19px; color: black; margin-right: 15px; margin-left:15px; font-family: 'Poppins', sans-serif;" href="contatti.jsp">CONTATTI</a>
 </div>
 <div style="padding: 5px 0px 0px 0px; width: 20%; float: left;  text-align: center;">
-  <img style="line-height: 50px; width: 200px;" src="logotsw.png">
+  <img style="line-height: 50px; width: 200px;" src="imgs/logotsw.png">
 </div>
 <div style="width: 40%; float: left; text-align: right;">
-	<p><img src="user.png" style="padding-right: 40px; width: 30px;">
-	<img src="cart.png" style="padding-right: 40px; width: 30px;"></p>
+	<p><img src="imgs/user.png" style="padding-right: 40px; width: 30px;">
+	<img src="imgs/cart.png" style="padding-right: 40px; width: 30px;"></p>
 </div>
 </div>
 
