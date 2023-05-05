@@ -1,38 +1,11 @@
 <html>
 
 <head>
-<title>home</title>
-<style>
-	@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
-</style>
+<title>Home</title>	
+<link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
-	<style>
-    .container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-	}
-	
-	.photo {
-		margin: 20px;
-		text-align: center;
-	}
-	
-	.photo img {
-		width: 300px;
-		height: 200px;
-		object-fit: cover;
-	}
-	
-	.photo h2 {
-		margin-top: 10px;
-		font-size: 24px;
-		font-weight: bold;
-	}
 
-    }
-</style>
+
 <body style="margin: 0px;">
 
 <%@include file="header.jsp" %>
