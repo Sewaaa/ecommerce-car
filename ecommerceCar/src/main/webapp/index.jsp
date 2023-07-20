@@ -34,7 +34,7 @@ $(function() {
 	});
 </script>
 <!-- FILTROCATALOGO PER TIPO PRODOTTO -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-MFYNGVjU8fVo9m0JQMCZGfZ9AG5u2UR8jj+gNjVg6YUQFdGsIbrn7Xku5TsRYVBJ" crossorigin="anonymous"></script>
   <script type="text/javascript">
     $(document).ready(function() {
       $("#filterType").change(function() {
