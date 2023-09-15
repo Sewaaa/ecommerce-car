@@ -48,7 +48,7 @@ public class login extends HttpServlet {
 				sessione.setAttribute("email", u.getEmail());
 				
 				int flag = 0;
-				ArrayList<prodotto> s = new ArrayList<prodotto>();
+				ArrayList<prodotto> s = new ArrayList<>();
 				Enumeration<String> attrNames = sessione.getAttributeNames();
 				while (attrNames.hasMoreElements()){
 					if (((String) attrNames.nextElement()).equals("id_prodotto")) {
