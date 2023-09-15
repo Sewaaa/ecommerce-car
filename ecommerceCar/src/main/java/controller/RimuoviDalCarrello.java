@@ -17,7 +17,7 @@ import model.object.prodotto;
 
 @WebServlet("/RimuoviDalCarrello")
 public class RimuoviDalCarrello extends HttpServlet {
-
+	
 	private static final long serialVersionUID = 1L;
        
 
@@ -29,11 +29,10 @@ public class RimuoviDalCarrello extends HttpServlet {
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession sessione = request.getSession();
-		ArrayList<prodotto> s = new ArrayList<>();
 		String email= (String)sessione.getAttribute("email");
 		if(email == null || email.isEmpty()) 
 		{
-			s = (ArrayList<prodotto>) sessione.getAttribute("id_prodotto");
+			ArrayList<prodotto> s = (ArrayList<prodotto>) sessione.getAttribute("id_prodotto");
 			int n = Integer.parseInt(request.getParameter("posizione"));
 			if(s.get(n).getQuantita() == 1) {
 				s.remove(n);
