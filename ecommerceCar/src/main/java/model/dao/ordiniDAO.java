@@ -18,9 +18,9 @@ public class ordiniDAO {
 	    PreparedStatement ps =null;
 		 ResultSet generatedKeys=null;
 	    try (Connection con = ConPool.getConnection()) {
-	         ps = con.prepareStatement(
+	         try(ps = con.prepareStatement(
 	                "INSERT INTO ordini(email_utente, nome, cognome, metodo_di_pagamento, prezzo_tot, prezzo_noiva, data_ordine) VALUES(?, ?, ?, ?, ?, ?, ?);",
-	                Statement.RETURN_GENERATED_KEYS);
+	                Statement.RETURN_GENERATED_KEYS)){
 	        ps.setString(1, email_utente);
 	        ps.setString(2, nome);
 	        ps.setString(3, cognome);
@@ -42,6 +42,9 @@ public class ordiniDAO {
 	        }
 
 	        return generatedOrderId;
+	} catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
 	    } catch (SQLException e) {
 	        throw new RuntimeException(e);
 	    }
@@ -64,9 +67,9 @@ public class ordiniDAO {
 		 PreparedStatement ps =null;
 		
 		 try (Connection con = ConPool.getConnection()) {
-			   ps = con.prepareStatement(
+			   try(ps = con.prepareStatement(
 					  "insert into ACQUISTI(email_utente,tipo,brand,percorso,prezzo,nome,id_ruote,id_interni,id_colore,id_ordine)  VALUES(?,?,?,?,?,?,?,?,?,?);",
-	                    Statement.RETURN_GENERATED_KEYS);
+	                    Statement.RETURN_GENERATED_KEYS)){
 	            ps.setString(1, email_utente);
 	            ps.setString(2, tipo);
 	            ps.setString(3, brand);
@@ -84,6 +87,9 @@ public class ordiniDAO {
 	               
 	            }
 	           return;
+		} catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
@@ -103,9 +109,9 @@ public class ordiniDAO {
 		 PreparedStatement ps =null;
 	
 		 try (Connection con = ConPool.getConnection()) {
-			   ps = con.prepareStatement(
+			   try(ps = con.prepareStatement(
 					  "insert into ACQUISTI(email_utente,tipo,brand, percorso,prezzo,nome,id_ordine)  VALUES(?,?,?,?,?,?,?);",
-	                    Statement.RETURN_GENERATED_KEYS);
+	                    Statement.RETURN_GENERATED_KEYS)){
 	            ps.setString(1, email_utente);
 	            ps.setString(2, tipo);
 	            ps.setString(3, brand);
@@ -120,6 +126,9 @@ public class ordiniDAO {
 	               
 	            }
 	           return;
+		} catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
@@ -150,15 +159,19 @@ public class ordiniDAO {
 			    if (emailFiltrata != null && !emailFiltrata.isEmpty()) {
 			    	
 			    	query += " WHERE o.email_utente = ? ORDER BY o.id";
-                    ps = con.prepareStatement
-        					(query);
+                    try(ps = con.prepareStatement
+        					(query)){} catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
                     ps.setString(1, emailFiltrata);
                     
                 } else {
                 	
                     query += " ORDER BY o.id";
-                    ps = con.prepareStatement
-        					(query);
+                    try(ps = con.prepareStatement
+        					(query)){} catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
                 }
 			   ArrayList<ordine> ordini = new ArrayList<ordine>();
 	            rs = ps.executeQuery();          
@@ -171,8 +184,8 @@ public class ordiniDAO {
 	        	   
                    if (!currentOrderId.equals(orderId)) {
                       
-                	   PreparedStatement ps2 = con.prepareStatement
-   					 ( "SELECT * FROM ordini WHERE id=? AND email_utente=?;");
+                	   try(PreparedStatement ps2 = con.prepareStatement
+   					 ( "SELECT * FROM ordini WHERE id=? AND email_utente=?;")){
                        ps2.setString(1, orderId);
                        ps2.setString(2, rs.getString(10));
                        
@@ -190,6 +203,9 @@ public class ordiniDAO {
                        
                        o=new ordine(orderId,dataOrdine,nome,cognome,emailUtente,prezzoTot,metodo);
                        ordini.add(o);
+			} catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
                    }
                    
                     prodotto p=new prodotto();
@@ -207,6 +223,7 @@ public class ordiniDAO {
 	            	o.addProdotto(p);
 	            }
 	           return ordini;
+		
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
@@ -247,10 +264,14 @@ public class ordiniDAO {
                 } 
 			    if ("recenti".equals(Orderby)) {
                     query += " ORDER BY o.id DESC";
-                    ps = con.prepareStatement(query);
+                    try(ps = con.prepareStatement(query)){} catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
                 } else if ("vecchi".equals(Orderby)) {
                     query += " ORDER BY o.id ASC";
-                    ps = con.prepareStatement(query);
+                    try(ps = con.prepareStatement(query)){} catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
                 }
 			    if(email)
 			    {
@@ -269,8 +290,8 @@ public class ordiniDAO {
 	        	   
                    if (!currentOrderId.equals(orderId)) {
                       
-                	   PreparedStatement ps2 = con.prepareStatement
-   					 ( "SELECT * FROM ordini WHERE id=? AND email_utente=?;");
+                	   try(PreparedStatement ps2 = con.prepareStatement
+   					 ( "SELECT * FROM ordini WHERE id=? AND email_utente=?;")){
                        ps2.setString(1, orderId);
                        ps2.setString(2, rs.getString(10));
                        
@@ -288,6 +309,9 @@ public class ordiniDAO {
                        
                        o=new ordine(orderId,dataOrdine,nome, cognome,emailUtente,prezzoTot,metodo);
                        ordini.add(o);
+			} catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
                    }
                    
                     prodotto p=new prodotto();
