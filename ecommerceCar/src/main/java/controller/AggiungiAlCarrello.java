@@ -19,8 +19,6 @@ import model.object.*;
 @WebServlet("/AggiungiAlCarrello")
 public class AggiungiAlCarrello extends HttpServlet {
 	
-	private ArrayList<prodotto> s = new ArrayList<>();
-	private prodotto nuovo;
 	private static final long serialVersionUID = 1L;
 
 	public AggiungiAlCarrello() {
@@ -32,9 +30,10 @@ public class AggiungiAlCarrello extends HttpServlet {
 		HttpSession sessione = request.getSession();
 		String email= (String)sessione.getAttribute("email");
 		/*AGGIUNGI AL CARRELLO GESTIONE DALLA SESSIONE*/
+		prodotto nuovo;
 		if(email == null || email.isEmpty()) 
 		{
-			s = (ArrayList<prodotto>) sessione.getAttribute("id_prodotto");
+			ArrayList<prodotto> s = (ArrayList<prodotto>) sessione.getAttribute("id_prodotto");
 			@SuppressWarnings("unused")
 			boolean flag = false;
 			for(int i=0; i<s.size(); i++) {
