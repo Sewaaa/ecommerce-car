@@ -33,7 +33,7 @@ public class carrelloSERVLET extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		carrelloDAO carrelloDAO= new carrelloDAO();
-		ArrayList<prodotto>  carrello = new ArrayList<prodotto>();
+		ArrayList<prodotto>  carrello = new ArrayList<>();
 		
 		RequestDispatcher dispatcher;
 		String email = (String)session.getAttribute("email");
