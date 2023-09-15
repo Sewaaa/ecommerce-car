@@ -47,7 +47,7 @@ if (session == null || email == null) {
 </head>
 <body>
     <h1>Ordini</h1>
-    <div align="center">        
+    <div style="text-align: center;">        
         <label for="orderSelect">Ordina per data:</label>
         <select id="orderSelect" onchange="filtraOrdini()">
             <option value="recenti">Pi&ugrave; recente</option>
@@ -120,7 +120,7 @@ if (session == null || email == null) {
 			}
 		  }
           if (!hasResults) { %>
-             <div align=center><b>Nessun Ordine Effettuato</b></div>
+             <div style="text-align: center;"><b>Nessun Ordine Effettuato</b></div>
         <% 
           	}
   		%>
