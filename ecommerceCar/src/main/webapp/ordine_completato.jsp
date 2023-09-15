@@ -78,7 +78,7 @@
         } else {
         %>
 	        <form action="crea_pdf" method="POST">
-	            <input type="hidden" name="metodo_di_pagamento" value="<%= metodoDiPagamento %>">
+	            <input type="hidden" name="metodo_di_pagamento" value="${e:forHtml(metodoDiPagamento)}">
 	            <input type="hidden" name="id_ordine" value="<%=session.getAttribute("generatedOrderId")%>">
 	            <input type="hidden" name="nome" value="<%= session.getAttribute("nome") %>">
 	            <input type="hidden" name="cognome" value="<%= session.getAttribute("cognome") %>">
