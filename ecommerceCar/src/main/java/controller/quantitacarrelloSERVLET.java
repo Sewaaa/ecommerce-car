@@ -38,7 +38,7 @@ public class quantitacarrelloSERVLET extends HttpServlet {
 			
 			/*AGGIUNGI AL CARRELLO GESTIONE DALLA SESSIONE*/
 			if(email == null || email.isEmpty()) {
-				ArrayList<prodotto> s = new ArrayList<prodotto>();
+				ArrayList<prodotto> s = new ArrayList<>();
 				s = (ArrayList<prodotto>) sessione.getAttribute("id_prodotto");
 				int n = Integer.parseInt(request.getParameter("posizione"));
 				s.get(n).addQuantita();
@@ -71,7 +71,7 @@ public class quantitacarrelloSERVLET extends HttpServlet {
 			
 			/*AGGIUNGI AL CARRELLO GESTIONE DALLA SESSIONE*/
 			if(email == null || email.isEmpty()) {
-				ArrayList<prodotto> s = new ArrayList<prodotto>();
+				ArrayList<prodotto> s = new ArrayList<>();
 				s = (ArrayList<prodotto>) sessione.getAttribute("id_prodotto");
 				int n = Integer.parseInt(request.getParameter("posizione"));
 					if(s.get(n).getQuantita() == 1) {
