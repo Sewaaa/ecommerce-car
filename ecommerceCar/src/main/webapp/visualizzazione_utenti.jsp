@@ -9,7 +9,7 @@ if ( session == null || email==null || !email.equals("admin@fgms.it")) {
 else
 {
 %>
-<!DOCTYPE html>
+<!DOCTYPE html lang="it">
 <html>
 <head>
     <title>Risultati Utenti</title>
