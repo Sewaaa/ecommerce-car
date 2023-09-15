@@ -45,7 +45,7 @@ public class effettua_ordine extends HttpServlet {
 	    String formattedDate = sdfDate.format(currentDate);
 	    String formattedTime = sdfTime.format(currentDate);
 	   
-	   ArrayList<prodotto>  carrello = new ArrayList<prodotto>();
+	   ArrayList<prodotto>  carrello = new ArrayList<>();
         
        ordiniDAO ordiniDAO=new ordiniDAO();
        carrelloDAO carrelloDAO=new carrelloDAO();
