@@ -18,6 +18,7 @@ import model.object.prodotto;
 
 @WebServlet("/carrelloSERVLET")
 public class carrelloSERVLET extends HttpServlet {
+	private static final String idProdotto = "id_prodotto";
 	private static final long serialVersionUID = 1L;
   
     public carrelloSERVLET() {
@@ -45,15 +46,15 @@ public class carrelloSERVLET extends HttpServlet {
 			ArrayList<prodotto> s = new ArrayList<>();
 			Enumeration<String> attrNames = session.getAttributeNames();
 			while (attrNames.hasMoreElements()){
-				if (((String) attrNames.nextElement()).equals("id_prodotto")) {
+				if (((String) attrNames.nextElement()).equals(idProdotto)) {
 			    	flag = 1;
 				}
 			}
 			if(flag == 0){
-				session.setAttribute("id_prodotto", s);
+				session.setAttribute(idProdotto, s);
 			}else{
 				@SuppressWarnings("unchecked")
-				ArrayList<prodotto> temp = (ArrayList<prodotto>) session.getAttribute("id_prodotto");
+				ArrayList<prodotto> temp = (ArrayList<prodotto>) session.getAttribute(idProdotto);
 				s = temp;
 			}
 			
