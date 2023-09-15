@@ -97,7 +97,7 @@
 			}
 		  }
           if (!hasResults) { %>
-             <div align=center><b>Nessun Ordine Effettuato</b></div>
+             <div style="text-align: center;"><b>Nessun Ordine Effettuato</b></div>
         <% 
           	}
   		%>
