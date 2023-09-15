@@ -8,7 +8,7 @@
 	
 	.brand{
 		margin: 0 auto;
-		padding: 2% 7% 0 7%;;
+		padding: 2% 7% 0 7%;
 	}
 
 	.brand img {
@@ -87,7 +87,7 @@
 @media only screen and (max-width: 1200px) {
 	.brand{
 		margin: 0 auto;
-		padding: 2% 3% 0 3%;;
+		padding: 2% 3% 0 3%;
 	}
 
 	.brand img {
@@ -147,7 +147,7 @@
 @media only screen and (max-width: 750px) {
 	.brand{
 		margin: 0 auto;
-		padding: 2% 0% 0 0%;;
+		padding: 2% 0% 0 0%;
 	}
 
 	.brand img {
