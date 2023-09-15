@@ -14,7 +14,7 @@
 <link rel="icon" href="imgs/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="css/index.css">
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="></script>
 
 <!-- FILTROCATALOGO PER TIPO PRODOTTO -->
   <script type="text/javascript">
