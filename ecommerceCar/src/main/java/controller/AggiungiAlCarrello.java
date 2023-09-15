@@ -19,7 +19,7 @@ import model.object.*;
 @WebServlet("/AggiungiAlCarrello")
 public class AggiungiAlCarrello extends HttpServlet {
 	
-	private ArrayList<prodotto> s = new ArrayList<prodotto>();
+	private ArrayList<prodotto> s = new ArrayList<>();
 	private prodotto nuovo;
 	private static final long serialVersionUID = 1L;
 
