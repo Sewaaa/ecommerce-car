@@ -27,7 +27,7 @@ public class ordine {
 		this.utente.setEmail(email_utente); 
 		this.metodo_di_pagamento = metodo_di_pagamento;
 		this.prezzo_tot = prezzo_tot;
-		this.prodotti =  new ArrayList<prodotto>();
+		this.prodotti =  new ArrayList<>();
 	}
 
 
