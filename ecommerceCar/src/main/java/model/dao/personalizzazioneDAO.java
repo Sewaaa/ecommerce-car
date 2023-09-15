@@ -16,8 +16,8 @@ public class personalizzazioneDAO {
 		 ResultSet rs=null,rs1=null,rs2=null;
 		 PreparedStatement ps=null,ps1=null,ps2=null;
 		 try (Connection con = ConPool.getConnection()) {
-			  ps = con.prepareStatement
-			  ("SELECT id  FROM colori WHERE nome=?;");
+			  try(ps = con.prepareStatement
+			  ("SELECT id  FROM colori WHERE nome=?;")){
 			   ps.setString(1, colore);
 			   rs = ps.executeQuery();
 			   while(rs.next())
@@ -50,6 +50,9 @@ public class personalizzazioneDAO {
 				   //System.out.print("ps:"+ps+"\nps1:"+ps1+"\nps2:"+ps2+"\n");   
 				   
 	           return id_personalizzazioni;
+		} catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
@@ -84,12 +87,12 @@ public class personalizzazioneDAO {
 		 PreparedStatement ps =null;
 		 ResultSet rs=null;
 		 try (Connection con = ConPool.getConnection()) {
-			 ps = con.prepareStatement
+			 try(ps = con.prepareStatement
 					("SELECT nome  FROM colori WHERE id=?\r\n"
 							+ "UNION\r\n"
 							+ "SELECT tipo FROM ruote WHERE id=?\r\n"
 							+ "UNION\r\n"
-							+ "SELECT tipo FROM interni WHERE id=?;");  
+							+ "SELECT tipo FROM interni WHERE id=?;")){  
 			   ps.setString(1, colore);
 			   ps.setString(2, ruote);
 			   ps.setString(3, interni);
@@ -103,6 +106,9 @@ public class personalizzazioneDAO {
 	        	   id_personalizzazioni.add(rs.getString(3));
 	            }
 	           return id_personalizzazioni;
+		} catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
