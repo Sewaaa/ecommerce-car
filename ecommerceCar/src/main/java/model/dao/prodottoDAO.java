@@ -12,8 +12,8 @@ public class prodottoDAO {
 		 PreparedStatement ps =null;
 		 ResultSet rs=null;
 		 try (Connection con = ConPool.getConnection()) {
-			 ps = con.prepareStatement
-			("select * from prodotti as p ,brand as b, media as m where p.id_brand=b.id and m.id_prodotto=p.id ;"); 
+			 try(ps = con.prepareStatement
+			("select * from prodotti as p ,brand as b, media as m where p.id_brand=b.id and m.id_prodotto=p.id ;")){
 	            rs = ps.executeQuery();
 	           List<prodotto> lista_prodotti = new ArrayList<>();
 	           while (rs.next()) {
@@ -32,6 +32,9 @@ public class prodottoDAO {
 	                lista_prodotti.add(p);
 	            }
 	           return lista_prodotti;
+		} catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
@@ -73,7 +76,9 @@ public class prodottoDAO {
 		            int idProdotto = generatedKeys.getInt(1);
 
 		            String insertMediaQuery = "INSERT INTO media (percorso, id_prodotto) VALUES (?, ?)";
-		            PreparedStatement mediaPs = con.prepareStatement(insertMediaQuery);
+		            try(PreparedStatement mediaPs = con.prepareStatement(insertMediaQuery)){} catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
 		            mediaPs.setString(1, foto);
 		            mediaPs.setInt(2, idProdotto);
 		            
