@@ -17,7 +17,7 @@ public class carrelloDAO {
 		 PreparedStatement ps =null;
 		 ResultSet rs=null;
 		 try (Connection con = ConPool.getConnection()) {
-			ps = con.prepareStatement
+			try(ps = con.prepareStatement){
 			("SELECT p.id as id_prodotto,p.tipo,c.id as id_carrello, p.nome as nome_prodotto, p.prezzo, b.nome as nome_brand, colori.nome as colore, ruote.tipo as ruote , interni.tipo as interni, m.percorso, count(*)"+
 			" FROM prodotti p"+
 			" INNER JOIN carrello c ON p.id = c.id_prodotto"+
@@ -53,6 +53,9 @@ public class carrelloDAO {
 	                carrello.add(p);
 	            }
 	           return carrello;
+		} catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
@@ -80,7 +83,7 @@ public class carrelloDAO {
 			 
 			 for (prodotto p : lista_idprodotti) {
 				
-				 ps = con.prepareStatement
+				try(ps = con.prepareStatement){
 				("select p.id as id_prodotto ,p.prezzo,p.tipo, b.nome as nome_brand, p.nome as nome_prodotto, m.percorso from prodotti as p ,brand as b, media as m where p.id_brand=b.id and m.id_prodotto=p.id and p.id=?");
 				ps.setString(1, lista_idprodotti.get(i).getId());
 				    rs = ps.executeQuery();
@@ -106,6 +109,9 @@ public class carrelloDAO {
 		           i++;
 			 }
 	           return carrello;
+		 } catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
@@ -130,7 +136,7 @@ public class carrelloDAO {
 	 public void InsertIntoCart(String email_utente, String id_prodotto) {
 		 PreparedStatement ps =null;
 		 try (Connection con = ConPool.getConnection()) {
-			   ps = con.prepareStatement(
+			   try(ps = con.prepareStatement){(
 	                    "insert into carrello (email_utente, id_prodotto) VALUES(?,?);",
 	                    Statement.RETURN_GENERATED_KEYS);
 	            ps.setString(1, email_utente);
@@ -141,6 +147,9 @@ public class carrelloDAO {
 	            }
 	           return;
 	        } catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
+		} catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
 		   finally {
@@ -159,7 +168,7 @@ public class carrelloDAO {
 		 PreparedStatement ps =null;
 		
 		 try (Connection con = ConPool.getConnection()) {
-			   ps = con.prepareStatement(
+			   try(ps = con.prepareStatement){(
 					  "insert into carrello (email_utente, id_prodotto,id_colore,id_ruote,id_interni) VALUES(?,?,?,?,?);",
 	                    Statement.RETURN_GENERATED_KEYS);
 	            ps.setString(1, email_utente);
@@ -173,6 +182,9 @@ public class carrelloDAO {
 	            }
 	           return;
 	        } catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
+		} catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
 		   finally {
@@ -191,13 +203,16 @@ public class carrelloDAO {
 		 PreparedStatement ps =null;
 
 		 try (Connection con = ConPool.getConnection()) {
-			ps = con.prepareStatement(
+			try(ps = con.prepareStatement){(
 	                    "delete from carrello where id= ?");
 	         
 	            ps.setString(1, id_prodotto);
 	            ps.executeUpdate();
 	           return;
 	        } catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
+		} catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
 		   finally {
@@ -215,13 +230,16 @@ public class carrelloDAO {
 	 public void DeleteMyCart(String email) {
 		 PreparedStatement ps =null;
 		 try (Connection con = ConPool.getConnection()) {
-			   ps = con.prepareStatement(
+			   try(ps = con.prepareStatement){(
 	                    "delete from carrello where email_utente= ?");
 	         
 	            ps.setString(1, email);
 	            ps.executeUpdate();
 	           return;
 	        } catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
+		 } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
 		   finally {
@@ -239,7 +257,7 @@ public class carrelloDAO {
 	 public String SearchFromCart(String id_prodotto, String interni, String ruote, String colore, String email) {
 		 PreparedStatement ps =null;
 		 try (Connection con = ConPool.getConnection()) {
-			   ps = con.prepareStatement(
+			   try(ps = con.prepareStatement){(
 	          "Select id from carrello where id_prodotto= ? and id_colore=? and id_ruote=? and id_interni=? and email_utente=?");
 	         
 	            ps.setString(1, id_prodotto);
@@ -253,6 +271,9 @@ public class carrelloDAO {
 					result = rs.getString(1);
 				}
 	           return result;
+		 } catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
