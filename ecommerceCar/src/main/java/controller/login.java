@@ -20,7 +20,8 @@ import model.object.*;
 
 
 @WebServlet("/login")
-public class login extends HttpServlet {
+public class login extends HttpServlet {ù
+	private static final String idProdotto = "id_prodotto";
 	private static final long serialVersionUID = 1L;
        
 
@@ -51,21 +52,21 @@ public class login extends HttpServlet {
 				ArrayList<prodotto> s = new ArrayList<>();
 				Enumeration<String> attrNames = sessione.getAttributeNames();
 				while (attrNames.hasMoreElements()){
-					if (((String) attrNames.nextElement()).equals("id_prodotto")) {
+					if (( attrNames.nextElement()).equals(idProdotto)) {
 				    	flag = 1;
 					}
 				}
 				if(flag == 0){
-					sessione.setAttribute("id_prodotto", s);
+					sessione.setAttribute(idProdotto, s);
 				}else{
 					@SuppressWarnings("unchecked")
-					ArrayList<prodotto> temp = (ArrayList<prodotto>) sessione.getAttribute("id_prodotto");
+					ArrayList<prodotto> temp = (ArrayList<prodotto>) sessione.getAttribute(idProdotto);
 					s = temp;
 				}
 				
 				// Controlla se l'arraylist "s" è vuoto o meno
 				if (!s.isEmpty()) {
-					//System.out.println("L'arraylist 's' non è vuoto. Contiene " + s.size() + " elementi.");
+					
 					for (prodotto p : s) {
 						if(p.getTipo().equals("accessorio")) 
 						{
@@ -79,7 +80,7 @@ public class login extends HttpServlet {
 							
 							personalizzazioneDAO pDAO = new personalizzazioneDAO();
 							
-							List<String> id_personalizzazioni = (List<String>) pDAO.NameToId(p.getColore(), p.getRuote(), p.getInterni());
+							List<String> id_personalizzazioni = pDAO.NameToId(p.getColore(), p.getRuote(), p.getInterni());
 							   
 							for(int i=0; i<p.getQuantita(); i++) {
 								carrelloDAO.InsertIntoCart(u.getEmail(), p.getId(), id_personalizzazioni.get(0), id_personalizzazioni.get(1), id_personalizzazioni.get(2));	
@@ -88,7 +89,7 @@ public class login extends HttpServlet {
 					}
 				}
 				else {
-					//System.out.println("L'arraylist 's' è vuoto.");
+					
 				}
 				
 				
