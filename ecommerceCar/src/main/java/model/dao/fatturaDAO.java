@@ -19,7 +19,7 @@ public class fatturaDAO {
 		 PreparedStatement ps =null;
 		 ResultSet rs=null;
 		 try (Connection con = ConPool.getConnection()) {
-			 ps = con.prepareStatement
+			 try(ps = con.prepareStatement
 					("SELECT\r\n"
 					+ "    ordini.data_ordine,\r\n"
 					+ "    UTENTI.email,\r\n"
@@ -41,7 +41,7 @@ public class fatturaDAO {
 					+ "    LEFT JOIN INTERNI ON ACQUISTI.id_interni = INTERNI.id\r\n"
 					+ "WHERE\r\n"
 					+ "    ACQUISTI.email_utente = ?\r\n"
-					+ "    AND ACQUISTI.id_ordine = ?;");
+					+ "    AND ACQUISTI.id_ordine = ?;")){
 			   ps.setString(1, email);
 			   ps.setString(2, id_ordine);
 			    rs = ps.executeQuery();
@@ -82,6 +82,9 @@ public class fatturaDAO {
 	           ordine=getPrezziOrdine(utente.getEmail(),id_ordine,ordine);
 
 	           return ordine;
+		 } catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
@@ -104,7 +107,7 @@ public class fatturaDAO {
 		 PreparedStatement ps =null;
 		 ResultSet rs=null;
 		 try (Connection con = ConPool.getConnection()) {
-			 ps = con.prepareStatement
+			 try(ps = con.prepareStatement
 					("SELECT\r\n"
             		+ "	ordini.prezzo_noiva,\r\n"
             		+ "    ordini.prezzo_tot\r\n"
@@ -112,7 +115,7 @@ public class fatturaDAO {
             		+ "   ordini\r\n"
             		+ "WHERE\r\n"
             		+ "    ordini.email_utente = ?\r\n"
-            		+ "    AND ordini.id = ?");
+            		+ "    AND ordini.id = ?")){
 			   ps.setString(1, email);
 			   ps.setString(2, id_ordine);
 			    rs = ps.executeQuery();
@@ -123,6 +126,9 @@ public class fatturaDAO {
 				   ordine.setPrezzo_tot(rs.getString(2));
 	           }
 	           return ordine;
+		} catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
