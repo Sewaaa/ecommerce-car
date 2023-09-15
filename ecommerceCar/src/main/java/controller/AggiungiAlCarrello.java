@@ -54,7 +54,7 @@ public class AggiungiAlCarrello extends HttpServlet {
 				}}
 			}
 			
-		if(flag == false) {				
+		if(!flag) {				
 			if(request.getParameter("tipo").equals("macchina")) {
 				nuovo = new prodotto(request.getParameter(idProdotto), request.getParameter(colore), request.getParameter(ruote), request.getParameter(interni), request.getParameter("tipo"));
 				nuovo.addQuantita();
