@@ -19,6 +19,9 @@ import model.object.*;
 @WebServlet("/AggiungiAlCarrello")
 public class AggiungiAlCarrello extends HttpServlet {
 	private static final String idProdotto = "id_prodotto";
+	private static final String ruote = "ruote";
+	private static final String interni = "interni";
+	private static final String colore = "colore";
 	private static final long serialVersionUID = 1L;
 
 	public AggiungiAlCarrello() {
@@ -38,7 +41,7 @@ public class AggiungiAlCarrello extends HttpServlet {
 			boolean flag = false;
 			for(int i=0; i<s.size(); i++) {
 				if(request.getParameter("tipo").equals("macchina")) {
-					if(s.get(i).getId().equals(request.getParameter(idProdotto)) && s.get(i).getColore().equals(request.getParameter("colore")) && s.get(i).getInterni().equals(request.getParameter("interni")) && s.get(i).getRuote().equals(request.getParameter("ruote")) ) {
+					if(s.get(i).getId().equals(request.getParameter(idProdotto)) && s.get(i).getColore().equals(request.getParameter(colore)) && s.get(i).getInterni().equals(request.getParameter(interni)) && s.get(i).getRuote().equals(request.getParameter(ruote)) ) {
 						flag = true;
 						s.get(i).addQuantita();
 						request.getServletContext().getRequestDispatcher("/shop.jsp").forward(request, response);
@@ -52,7 +55,7 @@ public class AggiungiAlCarrello extends HttpServlet {
 			
 		if(flag == false) {				
 			if(request.getParameter("tipo").equals("macchina")) {
-				nuovo = new prodotto(request.getParameter(idProdotto), request.getParameter("colore"), request.getParameter("ruote"), request.getParameter("interni"), request.getParameter("tipo"));
+				nuovo = new prodotto(request.getParameter(idProdotto), request.getParameter(colore), request.getParameter(ruote), request.getParameter(interni), request.getParameter("tipo"));
 				nuovo.addQuantita();
 			}else {
 				nuovo = new prodotto(request.getParameter(idProdotto), request.getParameter("tipo"));
@@ -77,7 +80,7 @@ public class AggiungiAlCarrello extends HttpServlet {
 			else
 			{
 				personalizzazioneDAO persDAO=new personalizzazioneDAO();
-				List<String> id_personalizzazioni = (List<String>)persDAO.NameToId(request.getParameter("colore"),request.getParameter("ruote"),request.getParameter("interni"));
+				List<String> id_personalizzazioni = (List<String>)persDAO.NameToId(request.getParameter(colore),request.getParameter(ruote),request.getParameter(interni));
 				
 				carrelloDAO.InsertIntoCart(email, id_prodotto, id_personalizzazioni.get(0), id_personalizzazioni.get(1) , id_personalizzazioni.get(2) );
 			}
