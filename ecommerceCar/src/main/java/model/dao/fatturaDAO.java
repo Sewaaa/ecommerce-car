@@ -19,7 +19,7 @@ public class fatturaDAO {
 		 PreparedStatement ps =null;
 		 ResultSet rs=null;
 		 try (Connection con = ConPool.getConnection()) {
-			 ps = con.prepareStatement
+			 try(ps = con.prepareStatement){
 					("SELECT\r\n"
 					+ "    ordini.data_ordine,\r\n"
 					+ "    UTENTI.email,\r\n"
@@ -82,6 +82,9 @@ public class fatturaDAO {
 	           ordine=getPrezziOrdine(utente.getEmail(),id_ordine,ordine);
 
 	           return ordine;
+		 } catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
@@ -104,7 +107,7 @@ public class fatturaDAO {
 		 PreparedStatement ps =null;
 		 ResultSet rs=null;
 		 try (Connection con = ConPool.getConnection()) {
-			 ps = con.prepareStatement
+			 try(ps = con.prepareStatement){
 					("SELECT\r\n"
             		+ "	ordini.prezzo_noiva,\r\n"
             		+ "    ordini.prezzo_tot\r\n"
@@ -123,6 +126,9 @@ public class fatturaDAO {
 				   ordine.setPrezzo_tot(rs.getString(2));
 	           }
 	           return ordine;
+		 } catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
