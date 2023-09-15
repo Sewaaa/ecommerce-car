@@ -56,7 +56,7 @@ public class ordine {
 	public ordine() {
 		super();
 		this.data_ordine = "";
-		this.prodotti =  new ArrayList<prodotto>();
+		this.prodotti =  new ArrayList<>();
 		this.utente = new utente();
 		this.prezzo_novia="";
 		this.prezzo_tot="";
