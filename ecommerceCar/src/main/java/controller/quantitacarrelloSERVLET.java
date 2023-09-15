@@ -19,6 +19,8 @@ import model.object.prodotto;
 
 @WebServlet("/quantitacarrelloSERVLET")
 public class quantitacarrelloSERVLET extends HttpServlet {
+	private static final String idProdotto = "id_prodotto";
+	private static final String stringemail = "email";
 	private static final long serialVersionUID = 1L;
        
 
@@ -34,12 +36,12 @@ public class quantitacarrelloSERVLET extends HttpServlet {
 		
 		  while(hiddenquantita < quantita) {
 			HttpSession sessione = request.getSession();
-			String email= (String)sessione.getAttribute("email");
+			String email= (String)sessione.getAttribute(stringemail);
 			
 			/*AGGIUNGI AL CARRELLO GESTIONE DALLA SESSIONE*/
 			if(email == null || email.isEmpty()) {
 				ArrayList<prodotto> s = new ArrayList<>();
-				s = (ArrayList<prodotto>) sessione.getAttribute("id_prodotto");
+				s = (ArrayList<prodotto>) sessione.getAttribute(idProdotto);
 				int n = Integer.parseInt(request.getParameter("posizione"));
 				s.get(n).addQuantita();
 			}else	/*AGGIUNGI AL CARRELLO GESTIONE COL DATABASE*/
@@ -47,7 +49,7 @@ public class quantitacarrelloSERVLET extends HttpServlet {
 			
 				prodottoDAO prodottoDAO = new prodottoDAO();
 				carrelloDAO carrelloDAO = new carrelloDAO();
-				String id_prodotto=(String)  request.getParameter("id_prodotto");
+				String id_prodotto=(String)  request.getParameter(idProdotto);
 				String tipo=prodottoDAO.getTipoProdottoById(id_prodotto);
 				
 				if(tipo.equals("accessorio"))
@@ -67,12 +69,12 @@ public class quantitacarrelloSERVLET extends HttpServlet {
 		  
 		while(hiddenquantita > quantita) {
 			HttpSession sessione = request.getSession();
-			String email= (String)sessione.getAttribute("email");
+			String email= (String)sessione.getAttribute(stringemail);
 			
 			/*AGGIUNGI AL CARRELLO GESTIONE DALLA SESSIONE*/
 			if(email == null || email.isEmpty()) {
 				ArrayList<prodotto> s = new ArrayList<>();
-				s = (ArrayList<prodotto>) sessione.getAttribute("id_prodotto");
+				s = (ArrayList<prodotto>) sessione.getAttribute(idProdotto);
 				int n = Integer.parseInt(request.getParameter("posizione"));
 					if(s.get(n).getQuantita() == 1) {
 						s.remove(n);
@@ -86,8 +88,8 @@ public class quantitacarrelloSERVLET extends HttpServlet {
 				String colore = id_personalizzazioni.get(0);
 				String ruote = id_personalizzazioni.get(1);
 				String interni = id_personalizzazioni.get(2);
-				String id_carrello = carrelloDAO.SearchFromCart((String)request.getParameter("id_prodotto"), interni, ruote, colore, (String)sessione.getAttribute("email"));			    
-				System.out.println(id_carrello);
+				String id_carrello = carrelloDAO.SearchFromCart((String)request.getParameter(idProdotto), interni, ruote, colore, (String)sessione.getAttribute(stringemail));			    
+				
 				carrelloDAO.DeleteFromCart(id_carrello);
 			}
 			hiddenquantita--;
