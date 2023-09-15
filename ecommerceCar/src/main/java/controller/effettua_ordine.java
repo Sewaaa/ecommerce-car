@@ -52,7 +52,7 @@ public class effettua_ordine extends HttpServlet {
        personalizzazioneDAO persDAO=new personalizzazioneDAO();
        
        /*Creazione nuovo ordine*/
-       int generatedOrderId=(int)ordiniDAO.insertNewOrder(email,nome,cognome,metodo,prezzo_totale,prezzo_noiva, formattedDate+" "+formattedTime);
+       int generatedOrderId= ordiniDAO.insertNewOrder(email,nome,cognome,metodo,prezzo_totale,prezzo_noiva, formattedDate+" "+formattedTime);
        /*Prelievo dei prodotti del carrello*/
        carrello = (ArrayList<prodotto>) carrelloDAO.getMyCart(email);
        /*Inserisci prodotti da carrello a acquisti, correllati all'ordine creato*/
