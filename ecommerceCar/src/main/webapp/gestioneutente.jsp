@@ -40,7 +40,7 @@
 </head>
 <body>
     <!-- MODIFICA DEL PRODOTTO -->
-    <h1 align="center">Gestione Dati Utente</h1>
+    <h1 style="text-align: center;">Gestione Dati Utente</h1>
     <%@ page import="java.sql.*, java.util.*, java.time.*, java.time.temporal.ChronoUnit, java.io.*, java.text.DecimalFormat, model.object.*" %>
     <%
 		utente u = (utente) session.getAttribute("utente");
