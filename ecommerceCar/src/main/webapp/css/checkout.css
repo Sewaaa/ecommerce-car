@@ -3,7 +3,7 @@
 body,html {
   height:100%;
   margin:0;
-  font-family:lato, sans-serif;;
+  font-family:lato, sans-serif;
 }
 
 h2 {
@@ -233,9 +233,7 @@ ul li:hover {
   -webkit-transition:background .2s ease;
           transition:background .2s ease;
 }
-.dropdown-select {
-  display:none;
-}
+
 .credit-card-image {
   display:block;
   max-height:80px;
