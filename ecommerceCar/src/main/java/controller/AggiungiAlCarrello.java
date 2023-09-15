@@ -37,7 +37,7 @@ public class AggiungiAlCarrello extends HttpServlet {
 		prodotto nuovo;
 		if(email == null || email.isEmpty()) 
 		{
-			ArrayList<prodotto> s = (ArrayList<prodotto>) sessione.getAttribute("id_prodotto");
+			ArrayList<prodotto> s = (ArrayList<prodotto>) sessione.getAttribute(idProdotto);
 			@SuppressWarnings("unused")
 			boolean flag;
 			for(int i=0; i<s.size(); i++) {
