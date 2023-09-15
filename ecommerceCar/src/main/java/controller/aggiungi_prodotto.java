@@ -32,7 +32,7 @@ public class aggiungi_prodotto extends HttpServlet {
 		try {
 			prodottoDAO.InsertNewProdotto (nome,tipo,descrizione,data_rilascio,prezzo,brand,foto);
 		} catch (Exception e) {		
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 			  
         request.getServletContext().getRequestDispatcher("/gestionedbSERVLET").forward(request, response);
