@@ -36,7 +36,7 @@ else
 	</head>
 <body>
 <!-- INSERIMENTO NUOVO PRODOTTO -->
- <h1 align=center> Inserisci Nuovo Prodotto </h1>
+ <h1 style="text-align: center;"> Inserisci Nuovo Prodotto </h1>
 	  
        <form action="aggiungi_prodotto" method="POST" >
        
@@ -77,7 +77,7 @@ else
 <!-- RIMOZIONE E MODIFICA PRODOTTI DEL CATALOGO -->
 
 <br><br><br>
-<h1 align=center> Rimuovi e Modifica Prodotti </h1>
+<h1 style="text-align: center;"> Rimuovi e Modifica Prodotti </h1>
  
 <%@ page import="java.sql.*, java.util.*, java.time.*, java.time.temporal.ChronoUnit, java.io.*, java.text.DecimalFormat" %>
 <%
