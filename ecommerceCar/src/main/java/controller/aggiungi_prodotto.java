@@ -29,11 +29,9 @@ public class aggiungi_prodotto extends HttpServlet {
 		
 		prodottoDAO prodottoDAO=new prodottoDAO();
 
-		try {
+		
 			prodottoDAO.InsertNewProdotto (nome,tipo,descrizione,data_rilascio,prezzo,brand,foto);
-		} catch (Exception e) {		
-			
-		}
+		
 			  
         request.getServletContext().getRequestDispatcher("/gestionedbSERVLET").forward(request, response);
 	}
