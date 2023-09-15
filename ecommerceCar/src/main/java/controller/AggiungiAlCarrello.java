@@ -22,6 +22,7 @@ public class AggiungiAlCarrello extends HttpServlet {
 	private static final String ruote = "ruote";
 	private static final String interni = "interni";
 	private static final String colore = "colore";
+	private static final String shop = "/shop.jsp";
 	private static final long serialVersionUID = 1L;
 
 	public AggiungiAlCarrello() {
@@ -38,18 +39,18 @@ public class AggiungiAlCarrello extends HttpServlet {
 		{
 			ArrayList<prodotto> s = (ArrayList<prodotto>) sessione.getAttribute("id_prodotto");
 			@SuppressWarnings("unused")
-			boolean flag = false;
+			boolean flag;
 			for(int i=0; i<s.size(); i++) {
 				if(request.getParameter("tipo").equals("macchina")) {
 					if(s.get(i).getId().equals(request.getParameter(idProdotto)) && s.get(i).getColore().equals(request.getParameter(colore)) && s.get(i).getInterni().equals(request.getParameter(interni)) && s.get(i).getRuote().equals(request.getParameter(ruote)) ) {
 						flag = true;
 						s.get(i).addQuantita();
-						request.getServletContext().getRequestDispatcher("/shop.jsp").forward(request, response);
+						request.getServletContext().getRequestDispatcher(shop).forward(request, response);
 				}}else {
 					if(s.get(i).getId().equals(request.getParameter(idProdotto))) {
 						flag = true;
 						s.get(i).addQuantita();
-						request.getServletContext().getRequestDispatcher("/shop.jsp").forward(request, response);
+						request.getServletContext().getRequestDispatcher(shop).forward(request, response);
 				}}
 			}
 			
@@ -84,7 +85,7 @@ public class AggiungiAlCarrello extends HttpServlet {
 				
 				carrelloDAO.InsertIntoCart(email, id_prodotto, id_personalizzazioni.get(0), id_personalizzazioni.get(1) , id_personalizzazioni.get(2) );
 			}
-            request.getServletContext().getRequestDispatcher("/shop.jsp").forward(request, response);	
+            request.getServletContext().getRequestDispatcher(shop).forward(request, response);	
 	}
 }
 
