@@ -67,6 +67,7 @@ else
 <br>
 <h2>Utenti Registrati</h2>
 <table>
+<caption></caption>
     <tr>
         <th>Email</th>
         <th>Nome</th>
