@@ -46,7 +46,7 @@ public class carrelloSERVLET extends HttpServlet {
 			ArrayList<prodotto> s = new ArrayList<>();
 			Enumeration<String> attrNames = session.getAttributeNames();
 			while (attrNames.hasMoreElements()){
-				if (((String) attrNames.nextElement()).equals(idProdotto)) {
+				if (( attrNames.nextElement()).equals(idProdotto)) {
 			    	flag = 1;
 				}
 			}
