@@ -47,7 +47,7 @@ if (session == null || email == null) {
 </head>
 <body>
     <h1>Ordini degli utenti</h1>
-    <div align="center">
+    <div style="text-align: center;">
         <input type="text" id="utenteEmail" placeholder="Inserisci l'email dell'utente">
         <button onclick="filtraOrdini()">Filtra ordini</button>
         <br><br>
@@ -118,7 +118,7 @@ if (session == null || email == null) {
 			}
 		  }
           if (!hasResults) { %>
-             <div align=center><b>Nessun Ordine Effettuato</b></div>
+             <div style="text-align: center;"><b>Nessun Ordine Effettuato</b></div>
         <% 
           	}
   		%>
