@@ -17,7 +17,7 @@ import model.object.prodotto;
 
 @WebServlet("/RimuoviDalCarrello")
 public class RimuoviDalCarrello extends HttpServlet {
-	private ArrayList<prodotto> s = new ArrayList<prodotto>();
+
 	private static final long serialVersionUID = 1L;
        
 
@@ -29,6 +29,7 @@ public class RimuoviDalCarrello extends HttpServlet {
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession sessione = request.getSession();
+		ArrayList<prodotto> s = new ArrayList<>();
 		String email= (String)sessione.getAttribute("email");
 		if(email == null || email.isEmpty()) 
 		{
