@@ -24,7 +24,7 @@
 </head>
 <body>
     <!-- MODIFICA DEL PRODOTTO -->
-    <h1 align="center">Modifica del Prodotto</h1>
+    <h1 style="text-align: center;">Modifica del Prodotto</h1>
     <%@ page import="java.sql.*, java.util.*, java.time.*, java.time.temporal.ChronoUnit, java.io.*, java.text.DecimalFormat, model.object.*" %>
     <%
         prodotto p = (prodotto) session.getAttribute("prodotto");
