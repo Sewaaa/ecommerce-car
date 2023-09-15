@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="css/carrello.css">
 </head>
 <body style="margin: 0px;">
-	<h2 align=center>Carrello</h2>
+	<h2 style="text-align: center;">Carrello</h2>
 <%
 	    double prezzo_tot=0.0;
 	/*PRELIEVO PRODOTTI DEL CARRELLO CARRELLO*/
@@ -105,7 +105,7 @@
 		  </form>
 		  <%}
 			else{%>
-		  <div align=center><b>Carrello Vuoto</b></div>
+		  <div style="text-align: center;"><b>Carrello Vuoto</b></div>
 		  <%
 		  		}
 		   
