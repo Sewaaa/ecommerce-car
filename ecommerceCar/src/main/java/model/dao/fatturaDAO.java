@@ -18,30 +18,29 @@ public class fatturaDAO {
 	 public  ordine getInfoOrdine(String email,String id_ordine) {
 		 PreparedStatement ps =null;
 		 ResultSet rs=null;
-		 try (Connection con = ConPool.getConnection()) {
-			 try{ps = con.prepareStatement
-					("SELECT\r\n"
-					+ "    ordini.data_ordine,\r\n"
-					+ "    UTENTI.email,\r\n"
-					+ "    UTENTI.nome,\r\n"
-					+ "    ACQUISTI.tipo,\r\n"
-					+ "    UTENTI.cognome,\r\n"
-					+ "    ACQUISTI.nome AS nome_prodotto,\r\n"
-					+ "    ACQUISTI.prezzo,\r\n"
-					+ "    ACQUISTI.brand AS nome_brand,\r\n"
-					+ "    COLORI.nome AS nome_colore,\r\n"
-					+ "    RUOTE.tipo AS tipo_ruote,\r\n"
-					+ "    INTERNI.tipo AS tipo_interni\r\n"
-					+ "FROM\r\n"
-					+ "    ACQUISTI\r\n"
-					+ "    JOIN ORDINI ON ACQUISTI.id_ordine = ORDINI.id\r\n"
-					+ "    JOIN UTENTI ON ACQUISTI.email_utente = UTENTI.email\r\n"
-					+ "    LEFT JOIN COLORI ON ACQUISTI.id_colore = COLORI.id\r\n"
-					+ "    LEFT JOIN RUOTE ON ACQUISTI.id_ruote = RUOTE.id\r\n"
-					+ "    LEFT JOIN INTERNI ON ACQUISTI.id_interni = INTERNI.id\r\n"
-					+ "WHERE\r\n"
-					+ "    ACQUISTI.email_utente = ?\r\n"
-					+ "    AND ACQUISTI.id_ordine = ?;");
+		 try (Connection con = ConPool.getConnection();
+		     PreparedStatement ps = con.prepareStatement("SELECT\r\n"
+						+ "    ordini.data_ordine,\r\n"
+						+ "    UTENTI.email,\r\n"
+						+ "    UTENTI.nome,\r\n"
+						+ "    ACQUISTI.tipo,\r\n"
+						+ "    UTENTI.cognome,\r\n"
+						+ "    ACQUISTI.nome AS nome_prodotto,\r\n"
+						+ "    ACQUISTI.prezzo,\r\n"
+						+ "    ACQUISTI.brand AS nome_brand,\r\n"
+						+ "    COLORI.nome AS nome_colore,\r\n"
+						+ "    RUOTE.tipo AS tipo_ruote,\r\n"
+						+ "    INTERNI.tipo AS tipo_interni\r\n"
+						+ "FROM\r\n"
+						+ "    ACQUISTI\r\n"
+						+ "    JOIN ORDINI ON ACQUISTI.id_ordine = ORDINI.id\r\n"
+						+ "    JOIN UTENTI ON ACQUISTI.email_utente = UTENTI.email\r\n"
+						+ "    LEFT JOIN COLORI ON ACQUISTI.id_colore = COLORI.id\r\n"
+						+ "    LEFT JOIN RUOTE ON ACQUISTI.id_ruote = RUOTE.id\r\n"
+						+ "    LEFT JOIN INTERNI ON ACQUISTI.id_interni = INTERNI.id\r\n"
+						+ "WHERE\r\n"
+						+ "    ACQUISTI.email_utente = ?\r\n"
+						+ "    AND ACQUISTI.id_ordine = ?;")) {	
 			   ps.setString(1, email);
 			   ps.setString(2, id_ordine);
 			    rs = ps.executeQuery();
@@ -85,37 +84,20 @@ public class fatturaDAO {
 		 } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
-	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
-	        }
-		   finally {
-			    try {
-			        if (rs != null) {
-			            rs.close();
-			        }
-			        if (ps != null) {
-			            ps.close();
-			        }
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    }
-		  }
 		  }
 	 
 		/*PRENDI INFORMAZIONI DEI PREZZI DI UN ORDINE PER FATTURA */
 	 public  ordine getPrezziOrdine(String email,String id_ordine,ordine ordine) {
-		 PreparedStatement ps =null;
 		 ResultSet rs=null;
-		 try (Connection con = ConPool.getConnection()) {
-			 try{ps = con.prepareStatement
-					("SELECT\r\n"
-            		+ "	ordini.prezzo_noiva,\r\n"
-            		+ "    ordini.prezzo_tot\r\n"
-            		+ "FROM\r\n"
-            		+ "   ordini\r\n"
-            		+ "WHERE\r\n"
-            		+ "    ordini.email_utente = ?\r\n"
-            		+ "    AND ordini.id = ?");
+		 try (Connection con = ConPool.getConnection();
+		     PreparedStatement ps = con.prepareStatement("SELECT\r\n"
+            					+ "	ordini.prezzo_noiva,\r\n"
+            					+ "    ordini.prezzo_tot\r\n"
+            					+ "FROM\r\n"
+            					+ "   ordini\r\n"
+            					+ "WHERE\r\n"
+            					+ "    ordini.email_utente = ?\r\n"
+            					+ "    AND ordini.id = ?")) {
 			   ps.setString(1, email);
 			   ps.setString(2, id_ordine);
 			    rs = ps.executeQuery();
@@ -129,20 +111,5 @@ public class fatturaDAO {
 		} catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
-	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
-	        }
-		   finally {
-			    try {
-			        if (rs != null) {
-			            rs.close();
-			        }
-			        if (ps != null) {
-			            ps.close();
-			        }
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    }
-		  }
 		  }
 }
