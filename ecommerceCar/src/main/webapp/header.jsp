@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+<title>FGMS Auto</title>
   <link rel="icon" href="imgs/favicon.ico" type="image/x-icon">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+YgG5Np6HiKu1pWWmH9B5z5l5uIdk9gxyfvKge/AUft8vq2x" crossorigin="anonymous"></script>
 
