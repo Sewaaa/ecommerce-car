@@ -11,8 +11,9 @@ public class brandDAO {
 	/*Prendi tutti i brand*/
 	 public List<brand>  getAllBrand() {
 		  
-		 try (Connection con = ConPool.getConnection()) {
-			try{
+		 try (Connection con = ConPool.getConnection();
+		     PreparedStatement ps = con.prepareStatement ("select * from brand;")) {
+			
 			PreparedStatement ps = con.prepareStatement
 			("select * from brand;");
 	           ResultSet rs = ps.executeQuery();
@@ -26,10 +27,7 @@ public class brandDAO {
 	                lista_brand.add(b);
 	            }
 	           return lista_brand;
-		 } catch (SQLException e) {
-	            throw new RuntimeException(e);
-	        }
-	        } catch (SQLException e) {
+		} catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
 		  }
