@@ -193,6 +193,7 @@ public class ordiniDAO {
 		 boolean email=false; 
 		 ResultSet rs=null;
 		 PreparedStatement ps = null;
+		 ordine o = null;
 		 try (Connection con = ConPool.getConnection()) {
 	
 			 String query = "SELECT o.id AS id_ordine, a.tipo AS tipo, a.nome AS nome_prodotto, a.brand AS nome_brand, a.percorso AS percorso_media, a.prezzo AS prezzo_prodotto, c.nome AS nome_colore, r.tipo AS tipo_ruote, i.tipo AS tipo_interni, o.email_utente as email_utente"
@@ -235,7 +236,7 @@ public class ordiniDAO {
 			   ArrayList<ordine> ordini = new ArrayList<ordine>();
 	            rs = ps.executeQuery();          
 	           String currentOrderId = "";
-	           ordine o = null;
+	         
 	           while (rs.next()) {
 	        	  
 	        	   
