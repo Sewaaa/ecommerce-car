@@ -14,10 +14,15 @@ public class personalizzazioneDAO {
 	 public List<String>  NameToId(String colore, String ruote, String interni) {
 		 List<String> id_personalizzazioni = new ArrayList<>();
 		 ResultSet rs=null,rs1=null,rs2=null;
-		 PreparedStatement ps=null,ps1=null,ps2=null;
-		 try (Connection con = ConPool.getConnection()) {
-			  try{ps = con.prepareStatement
+		
+		 try (Connection con = ConPool.getConnection();
+		    PreparedStatement ps = con.prepareStatement
 			  ("SELECT id  FROM colori WHERE nome=?;");
+		     PreparedStatement ps1 = con.prepareStatement
+				("SELECT id  FROM ruote WHERE tipo=?;");
+		     PreparedStatement ps2 = con.prepareStatement
+				("SELECT id  FROM interni WHERE tipo=?;")) {
+			
 			   ps.setString(1, colore);
 			   rs = ps.executeQuery();
 			   while(rs.next())
@@ -27,8 +32,7 @@ public class personalizzazioneDAO {
 			   }
 			   
 			   
-			   ps1 = con.prepareStatement
-				("SELECT id  FROM ruote WHERE tipo=?;");
+			   
 				   ps1.setString(1, ruote);
 				   rs1 = ps1.executeQuery();
 				   while(rs1.next())
@@ -37,8 +41,7 @@ public class personalizzazioneDAO {
 				   
 				   }
 						   
-			   ps2 = con.prepareStatement
-				("SELECT id  FROM interni WHERE tipo=?;");
+			   
 				   ps2.setString(1, interni);
 				   rs2 = ps2.executeQuery();
 				   while(rs2.next())
@@ -50,49 +53,25 @@ public class personalizzazioneDAO {
 				   //System.out.print("ps:"+ps+"\nps1:"+ps1+"\nps2:"+ps2+"\n");   
 				   
 	           return id_personalizzazioni;
-		} catch (SQLException e) {
-	            throw new RuntimeException(e);
-	        }
+		
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
-		   finally {
-			    try {
-			        if (rs != null) {
-			            rs.close();
-			        }
-			        if (rs1 != null) {
-			            rs1.close();
-			        }
-			        if (rs2 != null) {
-			            rs2.close();
-			        }
-			        if (ps != null) {
-			            ps.close();
-			        }
-			        if (ps1 != null) {
-			            ps1.close();
-			        }
-			        if (ps1 != null) {
-			            ps1.close();
-			        }
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    }
-		  }
+		  
 		  }
 	 
 	 /*DATI ID PERSONALIZZAZIONE, RESTITUISCI RISPETTIVI NOMI/TIPO */
 	 public List<String>  IdToName(String colore, String ruote, String interni) {
-		 PreparedStatement ps =null;
+		 
 		 ResultSet rs=null;
-		 try (Connection con = ConPool.getConnection()) {
-			 try{ps = con.prepareStatement
+		 try (Connection con = ConPool.getConnection();
+		    PreparedStatement ps = con.prepareStatement
 					("SELECT nome  FROM colori WHERE id=?\r\n"
 							+ "UNION\r\n"
 							+ "SELECT tipo FROM ruote WHERE id=?\r\n"
 							+ "UNION\r\n"
-							+ "SELECT tipo FROM interni WHERE id=?;"); 
+							+ "SELECT tipo FROM interni WHERE id=?;")) {
+			
 			   ps.setString(1, colore);
 			   ps.setString(2, ruote);
 			   ps.setString(3, interni);
@@ -106,24 +85,10 @@ public class personalizzazioneDAO {
 	        	   id_personalizzazioni.add(rs.getString(3));
 	            }
 	           return id_personalizzazioni;
-		} catch (SQLException e) {
-	            throw new RuntimeException(e);
-	        }
+		
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
-		   finally {
-			    try {
-			        if (rs != null) {
-			            rs.close();
-			        }
-			        if (ps != null) {
-			            ps.close();
-			        }
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    }
-		  }
-		  }
+		  
 	
 }
