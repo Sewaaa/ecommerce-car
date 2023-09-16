@@ -104,7 +104,7 @@ public class ordiniDAO {
 	 /*PRENDI TUTTI ORDINI */
 	 public ArrayList<ordine>  getAllOrdini(String emailFiltrata) {
 		 ResultSet rs=null;
-		 PreparedStatement ps=null;
+		 PreparedStatement ps;
 		 try (Connection con = ConPool.getConnection()) {
 			 String query = "SELECT o.id AS id_ordine, a.tipo AS tipo, a.nome AS nome_prodotto, a.brand AS nome_brand, a.percorso AS percorso_media, a.prezzo AS prezzo_prodotto, c.nome AS nome_colore, r.tipo AS tipo_ruote, i.tipo AS tipo_interni, o.email_utente as email_utente"
                      + " FROM ACQUISTI a"
@@ -192,7 +192,7 @@ public class ordiniDAO {
 	 public ArrayList<ordine>  getAllOrdini(String emailFiltrata, String Orderby) {
 		 boolean email=false; 
 		 ResultSet rs=null;
-		 PreparedStatement ps=null;
+		 PreparedStatement ps = null;
 		 try (Connection con = ConPool.getConnection()) {
 	
 			 String query = "SELECT o.id AS id_ordine, a.tipo AS tipo, a.nome AS nome_prodotto, a.brand AS nome_brand, a.percorso AS percorso_media, a.prezzo AS prezzo_prodotto, c.nome AS nome_colore, r.tipo AS tipo_ruote, i.tipo AS tipo_interni, o.email_utente as email_utente"
@@ -285,6 +285,23 @@ public class ordiniDAO {
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
+		 finally {
+		        // Close the PreparedStatement and ResultSet in a finally block to ensure they are always closed.
+		        if (ps != null) {
+		            try {
+		                ps.close();
+		            } catch (SQLException e) {
+		                // Handle any SQLException that may occur during closing.
+		            }
+		        }
+		        if (rs != null) {
+		            try {
+		                rs.close();
+		            } catch (SQLException e) {
+		                // Handle any SQLException that may occur during closing.
+		            }
+		        }
 		  }
 	
+}
 }
