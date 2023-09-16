@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+<title>FGMS Auto</title>
  <link rel="icon" href="imgs/favicon.ico" type="image/x-icon">
 <link href="css/all.css" rel="stylesheet" type="text/css"/>
 <link href="css/headerhome.css" rel="stylesheet" type="text/css"/>
