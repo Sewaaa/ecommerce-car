@@ -1,0 +1,160 @@
+@charset "UTF-8";
+
+ body{
+	margin: 0px;
+ }
+
+ #footer{
+  	margin-top: 50px; 
+ 	box-shadow: 0px -5px 10px #dedede;
+ }
+ 
+ .upfooter{
+ 	background-color: white; 
+ 	height: 40vh; 
+ 	width: 100%;
+ }
+ 
+ .upleft{
+ 	width: 40%; 
+ 	float: left; 
+ 	text-align: center; 
+ 	padding-top: 55px;
+ }
+ 
+ .upcenter{
+ 	padding-top: 85px; 
+ 	width: 20%; 
+ 	float: left;  
+ 	text-align: center;
+ }
+ 
+ .upright{
+ 	width: 40%; 
+ 	float: left; 
+ 	text-align: center; 
+ 	padding-top: 55px;
+ }
+ 
+ .logo{
+ 	width: 250px;
+ }
+ 
+ .text{
+ 	line-height: 30px; 
+ 	text-decoration: none; 
+ 	font-size: 17px; 
+ 	color: #8d8d8d; 
+ 	font-family: 'Poppins', sans-serif;
+ }
+ 
+ .lowfooter{
+ 	background-color: #A739FB; 
+ 	height: 55px; 
+ 	line-height: 15px; 
+ 	text-align: center; 
+ 	width: 100%;
+ }
+ 
+ .lowleft{
+ 	width: 50%; 
+ 	float: left;  
+ 	text-align: left;
+ }
+ 
+ .lowright{
+ 	width: 50%; 
+ 	float: left; 
+ 	text-align: right;
+ }
+ 
+ .copyright{
+ 	padding: 5px 0px 0px 0px; 
+ 	font-size: 15px; 
+ 	color: white; 
+ 	margin-left:70px; 
+ 	font-family: 'Poppins', sans-serif;
+ }
+ 
+ .social{
+ 	font-size: 20px; 
+ 	width: 70px; 
+ 	text-decoration: none; 
+ 	color: white;
+ }
+ 
+ .divsocial{
+ 	padding-top: 18px;
+ 	padding-right: 95px;
+ }
+ 
+ .bigtext{
+	font-size: 30px; 
+	color: black; 
+	font-family: 'Poppins', sans-serif; 
+	line-height: 10px; 
+ }
+ 
+@media only screen and (max-width: 700px) {
+	.upleft{
+		padding: 3% 0% 3% 0%;
+		width:100%;
+	}
+	
+	.upcenter{
+		padding: 0% 0% 0% 0%;
+		width:100%;
+	}
+	
+	.upright{
+		padding: 0% 0% 3% 0%;
+		width:100%;
+	}
+	
+	.lowleft{
+		width:100%;
+		text-align: center;
+	}
+	
+	.lowright{
+		width:100%;
+		text-align: center;
+	}
+	
+	.upfooter{
+		padding: 3% 0% 3% 0%;
+		height: 65vh;
+	}
+	
+	.lowfooter{
+		height: 10vh;
+	}
+	
+	.social{ 
+		text-align:center;
+	}
+	
+	.copyright{
+ 		padding: 0px 0px 0px 0px; 
+ 		font-size: 15px; 
+ 		color: white; 
+ 		margin-left:0px;
+ 	}
+ 	
+ 	.divsocial{
+ 		padding-top: 0px;
+ 		padding-right: 0px;
+ 	}
+ 	
+ 	.text{ 
+ 		font-size: 15px; 
+ 	}
+ 	
+ 	.bigtext{
+ 		font-size: 25px;
+ 	}
+ 	
+ 	.logo{
+ 		width: 220px;
+ 	}
+}
