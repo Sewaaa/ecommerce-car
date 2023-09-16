@@ -104,6 +104,7 @@ public class ordiniDAO {
 	 /*PRENDI TUTTI ORDINI */
 	 public ArrayList<ordine>  getAllOrdini(String emailFiltrata) {
 		 ResultSet rs=null;
+		 PreparedStatement ps=null;
 		 try (Connection con = ConPool.getConnection()) {
 			 String query = "SELECT o.id AS id_ordine, a.tipo AS tipo, a.nome AS nome_prodotto, a.brand AS nome_brand, a.percorso AS percorso_media, a.prezzo AS prezzo_prodotto, c.nome AS nome_colore, r.tipo AS tipo_ruote, i.tipo AS tipo_interni, o.email_utente as email_utente"
                      + " FROM ACQUISTI a"
@@ -116,19 +117,20 @@ public class ordiniDAO {
 			    if (emailFiltrata != null && !emailFiltrata.isEmpty()) {
 			    	
 			    	query += " WHERE o.email_utente = ? ORDER BY o.id";
-                    try(PreparedStatement ps = con.prepareStatement(query)){
+                    try(PreparedStatement psLocal = con.prepareStatement(query)){
+                    	  ps=psLocal;
+                          ps.setString(1, emailFiltrata);
                     } catch (SQLException e) {
-	            throw new RuntimeException(e);
-	        }
-                    ps.setString(1, emailFiltrata);
-                    
+        	            throw new RuntimeException(e);
+        	        }
                 } else {
                 	
                     query += " ORDER BY o.id";
-                    try(PreparedStatement ps = con.prepareStatement(query)){} 
-			    catch (SQLException e) {
-	            throw new RuntimeException(e);
-	        }
+                    try(PreparedStatement psLocal = con.prepareStatement(query)){
+                    	ps=psLocal;
+                    }catch (SQLException e) {
+                    throw new RuntimeException(e);
+                    }
                 }
 			   ArrayList<ordine> ordini = new ArrayList<ordine>();
 	            rs = ps.executeQuery();          
@@ -190,6 +192,7 @@ public class ordiniDAO {
 	 public ArrayList<ordine>  getAllOrdini(String emailFiltrata, String Orderby) {
 		 boolean email=false; 
 		 ResultSet rs=null;
+		 PreparedStatement ps=null;
 		 try (Connection con = ConPool.getConnection()) {
 	
 			 String query = "SELECT o.id AS id_ordine, a.tipo AS tipo, a.nome AS nome_prodotto, a.brand AS nome_brand, a.percorso AS percorso_media, a.prezzo AS prezzo_prodotto, c.nome AS nome_colore, r.tipo AS tipo_ruote, i.tipo AS tipo_interni, o.email_utente as email_utente"
@@ -208,12 +211,18 @@ public class ordiniDAO {
                 } 
 			    if ("recenti".equals(Orderby)) {
                     query += " ORDER BY o.id DESC";
-                    try(PreparedStatement ps = con.prepareStatement(query)){} catch (SQLException e) {
-	            throw new RuntimeException(e);
-	        }
+                    try(PreparedStatement psLocal = con.prepareStatement(query))
+                    {
+                    	ps=psLocal;
+                    	} catch (SQLException e) {
+                         	throw new RuntimeException(e);
+                    	}
                 } else if ("vecchi".equals(Orderby)) {
                     query += " ORDER BY o.id ASC";
-                    try(PreparedStatement ps = con.prepareStatement(query){} catch (SQLException e) {
+                    try(PreparedStatement psLocal = con.prepareStatement(query))
+                    		{
+                    			ps=psLocal;
+                    		} catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
                 }
