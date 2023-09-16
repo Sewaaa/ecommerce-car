@@ -15,12 +15,11 @@ public class ordiniDAO {
 	/*INSERISCI NUOVO ORDINE */
 	public int insertNewOrder(String email_utente, String nome, String cognome, String metodopagamento, String prezzo_tot, String prezzo_noiva, String data_ordine) {
 	    int generatedOrderId = -1; // Valore di default nel caso in cui non venga generato alcun ID valido
-	    PreparedStatement ps =null;
 		 ResultSet generatedKeys=null;
-	    try (Connection con = ConPool.getConnection()) {
-	         try{ps = con.prepareStatement(
+	    try (Connection con = ConPool.getConnection();
+		     PreparedStatement ps = con.prepareStatement(
 	                "INSERT INTO ordini(email_utente, nome, cognome, metodo_di_pagamento, prezzo_tot, prezzo_noiva, data_ordine) VALUES(?, ?, ?, ?, ?, ?, ?);",
-	                Statement.RETURN_GENERATED_KEYS);
+	                Statement.RETURN_GENERATED_KEYS)) {
 	        ps.setString(1, email_utente);
 	        ps.setString(2, nome);
 	        ps.setString(3, cognome);
@@ -45,31 +44,15 @@ public class ordiniDAO {
 	} catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
-	    } catch (SQLException e) {
-	        throw new RuntimeException(e);
-	    }
-	    finally {
-		    try {
-		        if (generatedKeys != null) {
-		        	generatedKeys.close();
-		        }
-		        if (ps != null) {
-		            ps.close();
-		        }
-		    } catch (SQLException e) {
-		        e.printStackTrace();
-		    }
-	  }
 	}
 
 	 /*INSERISCI NUOVO ACQUISTO MACCHINA (CON PERSONALIZZAZIONE DEI PRODOTTI DELL'ORDINE) */
 	 public void InsertNewAcquisto(String email_utente, String tipo, String brand, String percorso, String prezzo, String nome, String id_ruote, String id_interni, String id_colore, int id_ordine) {		  
-		 PreparedStatement ps =null;
 		
-		 try (Connection con = ConPool.getConnection()) {
-			   try{ps = con.prepareStatement(
+		 try (Connection con = ConPool.getConnection();
+		     PreparedStatement ps = con.prepareStatement(
 					  "insert into ACQUISTI(email_utente,tipo,brand,percorso,prezzo,nome,id_ruote,id_interni,id_colore,id_ordine)  VALUES(?,?,?,?,?,?,?,?,?,?);",
-	                    Statement.RETURN_GENERATED_KEYS);
+	                    Statement.RETURN_GENERATED_KEYS)) {
 	            ps.setString(1, email_utente);
 	            ps.setString(2, tipo);
 	            ps.setString(3, brand);
@@ -90,28 +73,15 @@ public class ordiniDAO {
 		} catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
-	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
-	        }
-		   finally {
-			    try {
-			        if (ps != null) {
-			            ps.close();
-			        }
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    }
-		  }
 		  }
 	 
 	 /*INSERISCI NUOVO ACQUISTO ACCESSORIO */
 	 public void InsertNewAcquisto(String email_utente, String tipo, String brand, String percorso, String prezzo, String nome, int id_ordine) {		  
-		 PreparedStatement ps =null;
 	
-		 try (Connection con = ConPool.getConnection()) {
-			   try{ps = con.prepareStatement(
+		 try (Connection con = ConPool.getConnection();
+		     PreparedStatement ps = con.prepareStatement(
 					  "insert into ACQUISTI(email_utente,tipo,brand, percorso,prezzo,nome,id_ordine)  VALUES(?,?,?,?,?,?,?);",
-	                    Statement.RETURN_GENERATED_KEYS);
+	                    Statement.RETURN_GENERATED_KEYS)) {
 	            ps.setString(1, email_utente);
 	            ps.setString(2, tipo);
 	            ps.setString(3, brand);
@@ -129,23 +99,10 @@ public class ordiniDAO {
 		} catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
-	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
-	        }
-		   finally {
-			    try {
-			        if (ps != null) {
-			            ps.close();
-			        }
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    }
-		  }
 		  }
 	 
 	 /*PRENDI TUTTI ORDINI */
 	 public ArrayList<ordine>  getAllOrdini(String emailFiltrata) {
-		 PreparedStatement ps =null;
 		 ResultSet rs=null;
 		 try (Connection con = ConPool.getConnection()) {
 			 String query = "SELECT o.id AS id_ordine, a.tipo AS tipo, a.nome AS nome_prodotto, a.brand AS nome_brand, a.percorso AS percorso_media, a.prezzo AS prezzo_prodotto, c.nome AS nome_colore, r.tipo AS tipo_ruote, i.tipo AS tipo_interni, o.email_utente as email_utente"
@@ -159,8 +116,7 @@ public class ordiniDAO {
 			    if (emailFiltrata != null && !emailFiltrata.isEmpty()) {
 			    	
 			    	query += " WHERE o.email_utente = ? ORDER BY o.id";
-                    try{
-                    	ps = con.prepareStatement(query);
+                    try(PreparedStatement ps = con.prepareStatement(query)){
                     } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
@@ -169,7 +125,8 @@ public class ordiniDAO {
                 } else {
                 	
                     query += " ORDER BY o.id";
-                    try{ps = con.prepareStatement(query);} catch (SQLException e) {
+                    try(PreparedStatement ps = con.prepareStatement(query)){} 
+			    catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
                 }
@@ -227,24 +184,11 @@ public class ordiniDAO {
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
-		   finally {
-			    try {
-			        if (rs != null) {
-			            rs.close();
-			        }
-			        if (ps != null) {
-			            ps.close();
-			        }
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    }
-		  }
 		  }
 	 
 	 /*PRENDI TUTTI ORDINI CON FILTRO PIU RECENTI/VECCHI */
 	 public ArrayList<ordine>  getAllOrdini(String emailFiltrata, String Orderby) {
 		 boolean email=false; 
-		 PreparedStatement ps =null;
 		 ResultSet rs=null;
 		 try (Connection con = ConPool.getConnection()) {
 	
@@ -264,12 +208,12 @@ public class ordiniDAO {
                 } 
 			    if ("recenti".equals(Orderby)) {
                     query += " ORDER BY o.id DESC";
-                    try{ps = con.prepareStatement(query);} catch (SQLException e) {
+                    try(PreparedStatement ps = con.prepareStatement(query)){} catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
                 } else if ("vecchi".equals(Orderby)) {
                     query += " ORDER BY o.id ASC";
-                    try{ps = con.prepareStatement(query);} catch (SQLException e) {
+                    try(PreparedStatement ps = con.prepareStatement(query){} catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
                 }
@@ -332,18 +276,6 @@ public class ordiniDAO {
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
-		   finally {
-			    try {
-			        if (rs != null) {
-			            rs.close();
-			        }
-			        if (ps != null) {
-			            ps.close();
-			        }
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    }
-		  }
 		  }
 	
 }
