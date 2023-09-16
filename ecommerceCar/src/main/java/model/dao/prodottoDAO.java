@@ -9,11 +9,12 @@ public class prodottoDAO {
 
 	/*PRENDI TUTTI I PRODOTTI con annesso nome brand */
 	 public List<prodotto>  getAllProdotti() {
-		 PreparedStatement ps =null;
+		 
 		 ResultSet rs=null;
-		 try (Connection con = ConPool.getConnection()) {
-			 try{ps = con.prepareStatement
-			("select * from prodotti as p ,brand as b, media as m where p.id_brand=b.id and m.id_prodotto=p.id ;");
+		 try (Connection con = ConPool.getConnection();
+		    PreparedStatement ps = con.prepareStatement
+			("select * from prodotti as p ,brand as b, media as m where p.id_brand=b.id and m.id_prodotto=p.id ;")) {
+			 
 	            rs = ps.executeQuery();
 	           List<prodotto> lista_prodotti = new ArrayList<>();
 	           while (rs.next()) {
@@ -32,31 +33,18 @@ public class prodottoDAO {
 	                lista_prodotti.add(p);
 	            }
 	           return lista_prodotti;
-		} catch (SQLException e) {
-	            throw new RuntimeException(e);
-	        }
+		
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
-		   finally {
-			    try {
-			        if (rs != null) {
-			            rs.close();
-			        }
-			        if (ps != null) {
-			            ps.close();
-			        }
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    }
-		  }
+		   
 		  }
 	 
 	 /*INSERISCI NUOVO PRODOTTO */
 	 public void InsertNewProdotto(String nome, String tipo, String descrizione, String data_rilascio, String prezzo, String id_brand, String foto) throws Exception {
 		 PreparedStatement prodottoPs =null;
 		 ResultSet rs=null;
-		 PreparedStatement mediaPs=null;
+		 
 		  try (Connection con = ConPool.getConnection()) {
 		        String insertProdottoQuery = "INSERT INTO prodotti (nome, tipo, descrizione, data_rilascio, prezzo, id_brand) VALUES (?, ?, ?, ?, ?, ?)";
 		        prodottoPs = con.prepareStatement(insertProdottoQuery, Statement.RETURN_GENERATED_KEYS);
@@ -77,7 +65,7 @@ public class prodottoDAO {
 		            int idProdotto = generatedKeys.getInt(1);
 
 		            String insertMediaQuery = "INSERT INTO media (percorso, id_prodotto) VALUES (?, ?)";
-		            try{mediaPs = con.prepareStatement(insertMediaQuery);} catch (SQLException e) {
+		            try(PreparedStatement mediaPs = con.prepareStatement(insertMediaQuery)){} catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
 		            mediaPs.setString(1, foto);
@@ -93,26 +81,16 @@ public class prodottoDAO {
 		    } catch (SQLException e) {
 		        throw new Exception("Database error during insertion.", e);
 		    }
-		   finally {
-			    try {
-			        if (rs != null) {
-			            rs.close();
-			        }
-			        if (prodottoPs != null) {
-			        	prodottoPs.close();
-			        }
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    }
-		  }
+		   
 		}
 
 	 /*RIMUOVI UN PRODOTTO */
 	 public void removeProdotto(String id) {
-		 PreparedStatement prodottoPs =null;  
-		 try (Connection con = ConPool.getConnection()) {
+		  
+		 try (Connection con = ConPool.getConnection();
+		      PreparedStatement prodottoPs = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 		        String query = "delete from prodotti as p where id=?";
-		        prodottoPs = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+		       
 		        prodottoPs.setString(1, id);
 		        prodottoPs.executeUpdate();
 		    } catch (SQLException e) {
@@ -122,14 +100,16 @@ public class prodottoDAO {
 
 	 /*MODIFICA UN PRODOTTO */
 	 public void modificaProdotto(String tipo_p,String nome_p,String data_rilascio_p,String prezzo_p,String id_prodotto,String id_brand,String descrizione_p,String foto_p) {
-		 PreparedStatement prodottoPs1 =null,  prodottoPs2=null;
+		
 	
-		  try (Connection con = ConPool.getConnection()) {
+		  try (Connection con = ConPool.getConnection();
+		     PreparedStatement prodottoPs1 = con.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
+		      PreparedStatement  prodottoPs2 = con.prepareStatement(query2, Statement.RETURN_GENERATED_KEYS)) {
 		 		String query1 = "UPDATE prodotti AS p SET p.nome = ?, p.tipo = ?, "
 			 		 		+ "p.data_rilascio = ?, p.prezzo = ?, p.id_brand=?,"
 			 		 		+ "p.descrizione=?" +
 			                "WHERE p.id = ?;";
-		        prodottoPs1 = con.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
+		        
 		        prodottoPs1.setString(1, nome_p);
 		        prodottoPs1.setString(2, tipo_p);
 		        prodottoPs1.setString(3, data_rilascio_p);
@@ -142,7 +122,7 @@ public class prodottoDAO {
 		        String query2 = "UPDATE MEDIA as m "
 			 		 		+ "SET m.percorso = ?"+
 			 		 		"WHERE m.id_prodotto = ?;";
-		        prodottoPs2 = con.prepareStatement(query2, Statement.RETURN_GENERATED_KEYS);
+		       
 		        prodottoPs2.setString(1, foto_p);
 		        prodottoPs2.setString(2, id_prodotto);
 
@@ -154,32 +134,22 @@ public class prodottoDAO {
 		    } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
-		   finally {
-			    try {
-			        if ( prodottoPs2 != null) {
-			        	prodottoPs2.close();
-			        }
-			        if (prodottoPs1 != null) {
-			        	prodottoPs1.close();
-			        }
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    }
-		  }
+		   
 		}
 	 
 	 
 	 /*PRENDI I PRODOTTI FILTRATI PER TIPO*/
 	 public List<prodotto>  getFiltredProdotti(String tipo) {
-		 PreparedStatement ps =null;
+		
 		 ResultSet rs=null;
-		 try (Connection con = ConPool.getConnection()) {
+		 try (Connection con = ConPool.getConnection();
+		     PreparedStatement ps = con.prepareStatement(query)) {
 			  String query="select * from prodotti as p ,brand as b, media as m where p.id_brand=b.id and m.id_prodotto=p.id and p.tipo = ?;";
 			  if(tipo.equals("tutti"))
 			  {
 				  query="select * from prodotti as p ,brand as b, media as m where p.id_brand=b.id and m.id_prodotto=p.id";	
 			  }
-				   ps = con.prepareStatement(query); 
+				   
 				  if (tipo != null && !tipo.isEmpty()) {
 					  if(!tipo.equals("tutti"))
 					  {
@@ -210,28 +180,18 @@ public class prodottoDAO {
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
-		   finally {
-			    try {
-			        if (rs != null) {
-			            rs.close();
-			        }
-			        if (ps != null) {
-			            ps.close();
-			        }
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    }
-		  }
+		  
 		  }
 
 	 
 	 /*PRENDI UN DETERMINATO PRODOTTO DALL' ID */
 	 public prodotto getSelectedProdotto(String id) {
-		 PreparedStatement ps =null;
+		
 		 ResultSet rs=null;
-		 try (Connection con = ConPool.getConnection()) {
-			 ps = con.prepareStatement
-			("select * from prodotti as p ,brand as b, media as m where p.id_brand=b.id and m.id_prodotto=p.id and p.id=?;"); 
+		 try (Connection con = ConPool.getConnection()
+		      PreparedStatement ps = con.prepareStatement
+			("select * from prodotti as p ,brand as b, media as m where p.id_brand=b.id and m.id_prodotto=p.id and p.id=?;")) {
+			
 			   ps.setString(1, id);
 			    rs = ps.executeQuery();
 	           prodotto p = new prodotto();
@@ -252,28 +212,18 @@ public class prodottoDAO {
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
-		   finally {
-			    try {
-			        if (rs != null) {
-			            rs.close();
-			        }
-			        if (ps != null) {
-			            ps.close();
-			        }
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    }
-		  }
+		  
 		  }
 
 	 
 	 /*RITORNA IL TIPO DI PRODOTTO DATO L'ID */
 	 public String getTipoProdottoById(String id) {
-		 PreparedStatement ps =null;
+		 
 		 ResultSet rs=null;
-		 try (Connection con = ConPool.getConnection()) {
-			 ps = con.prepareStatement
-			("SELECT tipo FROM prodotti WHERE id=?"); 
+		 try (Connection con = ConPool.getConnection();
+		    PreparedStatement ps = con.prepareStatement
+			("SELECT tipo FROM prodotti WHERE id=?")) {
+			 
 			   ps.setString(1, id);
 			    rs = ps.executeQuery();
 	           rs.next();
@@ -281,31 +231,21 @@ public class prodottoDAO {
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
-		   finally {
-			    try {
-			        if (rs != null) {
-			            rs.close();
-			        }
-			        if (ps != null) {
-			            ps.close();
-			        }
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    }
-		  }
+		  
 		  }
 	 
 	/*PRENDI TUTTI I PRODOTTI DI UN BRAND */
 	 public List<prodotto>  getBrandProdotti(String brand) {
 		 PreparedStatement ps =null;
 		 ResultSet rs=null;
-		 try (Connection con = ConPool.getConnection()) {
-			 ps = con.prepareStatement
+		 try (Connection con = ConPool.getConnection();
+		     PreparedStatement ps = con.prepareStatement
 					("SELECT p.id AS id_prodotto, b.nome AS nome_brand, p.tipo, p.nome AS nome_prodotto, p.prezzo, m.percorso " +
                     "FROM prodotti AS p " +
                     "JOIN brand AS b ON p.id_brand = b.id " +
                     "JOIN media AS m ON m.id_prodotto = p.id " +
-                    "WHERE b.id = ?"); 
+                    "WHERE b.id = ?")) {
+			 
 			   ps.setString(1, brand);
 	           rs = ps.executeQuery();
 	           List<prodotto> lista_prodotti = new ArrayList<>();
@@ -324,20 +264,8 @@ public class prodottoDAO {
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
-		   finally {
-			    try {
-			        if (rs != null) {
-			            rs.close();
-			        }
-			        if (ps != null) {
-			            ps.close();
-			        }
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    }
-		  }
-		  }
-}
+		   
+}}
 
 
 
