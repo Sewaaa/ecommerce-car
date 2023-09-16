@@ -16,7 +16,6 @@ public class fatturaDAO {
 
 	/*PRENDI INFORMAZIONI DI UN ORDINE PER FATTURA */
 	 public  ordine getInfoOrdine(String email,String id_ordine) {
-		 PreparedStatement ps =null;
 		 ResultSet rs=null;
 		 try (Connection con = ConPool.getConnection();
 		     PreparedStatement ps = con.prepareStatement("SELECT\r\n"
