@@ -13,9 +13,6 @@ public class brandDAO {
 		  
 		 try (Connection con = ConPool.getConnection();
 		     PreparedStatement ps = con.prepareStatement ("select * from brand;")) {
-			
-			PreparedStatement ps = con.prepareStatement
-			("select * from brand;");
 	           ResultSet rs = ps.executeQuery();
 	           List<brand> lista_brand = new ArrayList<>();
 	           while (rs.next()) {
