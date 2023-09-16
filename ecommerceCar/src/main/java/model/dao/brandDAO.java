@@ -33,19 +33,17 @@ public class brandDAO {
 		 String nome_brand="";
 		 ResultSet rs=null;
 		 PreparedStatement ps=null;
-		 try (Connection con = ConPool.getConnection()) {
-			try{
-				ps = con.prepareStatement("select nome from brand where id=?;");
-			    ps.setString(1, id_brand);
+		 try (Connection con = ConPool.getConnection()
+		     ps = con.prepareStatement("select nome from brand where id=?;")) {
+			
+			ps.setString(1, id_brand);
 	            rs = ps.executeQuery();
 	          
 	           while (rs.next()) {
 	        	   nome_brand=rs.getString(1);
 	            }
 	           return nome_brand;
-		       } catch (SQLException e) {
-	             throw new RuntimeException(e);
-	           }
+		      
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }finally {
