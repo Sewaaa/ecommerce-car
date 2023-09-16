@@ -14,13 +14,12 @@ public class utenteDAO {
 
 	/*Prelievo informazioni per login */
 	 public ArrayList<utente> getAllUtenti(String searchEmail) {
-		 PreparedStatement ps =null;
 		 ResultSet rs=null;
 		 try (Connection con = ConPool.getConnection()) {
 		    String query = "SELECT email, nome, cognome, telefono FROM utenti WHERE email != 'admin@fgms.it'";
 		    if (searchEmail != null && !searchEmail.isEmpty()) {
 		        query += " AND email=?";
-		        try{ps = con.prepareStatement(query);} catch (SQLException e) {
+		        try(PreparedStatement ps = con.prepareStatement (query)){} catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
 		        ps.setString(1, searchEmail);
@@ -28,7 +27,7 @@ public class utenteDAO {
 		    else
 		    {
 		    	searchEmail = "";
-		    	try{ps = con.prepareStatement(query);} catch (SQLException e) {
+		    	try(PreparedStatement ps = con.prepareStatement (query)){} catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
 		    }
@@ -48,30 +47,15 @@ public class utenteDAO {
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
-		   finally {
-			    try {
-			        if (rs != null) {
-			            rs.close();
-			        }
-			        if (ps != null) {
-			            ps.close();
-			        }
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    }
-		  }
 		}
 	
 	
 	
 	/*Prelievo informazioni per login */
 	 public utente login(String email, String psw) {
-		 PreparedStatement ps =null;
 		 ResultSet rs=null;
-		 try (Connection con = ConPool.getConnection()) {
-			
-			 try{ps = con.prepareStatement
-			("SELECT nome, cognome FROM UTENTI WHERE email =? AND psw =?");
+		 try (Connection con = ConPool.getConnection();
+		     PreparedStatement ps = con.prepareStatement("SELECT nome, cognome FROM UTENTI WHERE email =? AND psw =?")) {
 			ps.setString(1, email);
 			ps.setString(2, psw);
 			 rs = ps.executeQuery();
@@ -87,31 +71,13 @@ public class utenteDAO {
 		} catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
-	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
-	        }
-		   finally {
-			    try {
-			        if (rs != null) {
-			            rs.close();
-			        }
-			        if (ps != null) {
-			            ps.close();
-			        }
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    }
-		  }
 		  }
 	 
 	 /*Prelievo informazioni per utente loggato */
 	 public utente getUtenteLoggato(String email) {
-		 PreparedStatement ps =null;
 		 ResultSet rs=null;
-		 try (Connection con = ConPool.getConnection()) {
-			
-			 try{ps = con.prepareStatement
-			("SELECT * FROM UTENTI WHERE email =?");
+		 try (Connection con = ConPool.getConnection();
+		     PreparedStatement ps = con.prepareStatement("SELECT * FROM UTENTI WHERE email =?"){
 			ps.setString(1, email);
 			 rs = ps.executeQuery();
 			utente u=null;
@@ -142,31 +108,13 @@ public class utenteDAO {
 		} catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
-	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
-	        }
-		   finally {
-			    try {
-			        if (rs != null) {
-			            rs.close();
-			        }
-			        if (ps != null) {
-			            ps.close();
-			        }
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    }
-		  }
 		  }
 	 
 		/*prelievo utente (per controllo esistenza utente) */
 	 public boolean checkUser(String email) {
-		 PreparedStatement ps =null;
 		 ResultSet rs=null;
-		 try (Connection con = ConPool.getConnection()) {
-			
-			 try{ps = con.prepareStatement
-			("SELECT nome, cognome FROM UTENTI WHERE email =?");
+		 try (Connection con = ConPool.getConnection();
+		     PreparedStatement ps = con.prepareStatement("SELECT nome, cognome FROM UTENTI WHERE email =?"){
 			ps.setString(1, email);
 			 rs = ps.executeQuery();
 			boolean trovato=false;
@@ -177,31 +125,15 @@ public class utenteDAO {
 		} catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
-	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
-	        }
-		   finally {
-			    try {
-			        if (rs != null) {
-			            rs.close();
-			        }
-			        if (ps != null) {
-			            ps.close();
-			        }
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    }
-		  }
 		  }
 	 
 	 /*INSERISCI NUOVO UTENTE */
 	 public void InsertNewUtente(String email, String psw, String nome, String cognome, String telefono, String provincia, String citta, String cap, String via, String n_civ) {
-		 PreparedStatement ps =null;
 	
-		 try (Connection con = ConPool.getConnection()) {
-			   try{ps = con.prepareStatement(
+		 try (Connection con = ConPool.getConnection();
+		     PreparedStatement ps = con.prepareStatement(
 	                    "INSERT INTO UTENTI (email, psw, nome, cognome, telefono, provincia, citta, cap, via, n_civ) VALUES (?,?,?,?,?,?,?,?,?,?);",
-	                    Statement.RETURN_GENERATED_KEYS);
+	                    Statement.RETURN_GENERATED_KEYS){
 	            ps.setString(1, email);
 	            ps.setString(2, psw);
 	            ps.setString(3, nome);
@@ -220,29 +152,16 @@ public class utenteDAO {
 		} catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
-	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
-	        }
-		   finally {
-			    try {
-			        if (ps != null) {
-			            ps.close();
-			        }
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    }
-		  }
 		  }
 	 
 	 /*MODIFICA UN utente */
 	 public void modificaUtente(String id, String email,String password,String nome,String cognome,String telefono,String provincia,String citta,String cap,String via,String nciv) {
-		 PreparedStatement Ps =null;
 		 try (Connection con = ConPool.getConnection()) {
 		    	String query1 = "UPDATE utenti AS u SET u.email = ?, u.psw = ?, "
 			 		 		+ "u.nome = ?, u.cognome = ?, u.telefono=?,"
 			 		 		+ "u.provincia=?, u.citta = ?, u.cap=?, u.via=?, u.n_civ=?"
 			                + "WHERE u.email = ?;";
-		         try{Ps = con.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
+		         try(PreparedStatement Ps = con.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS)){
 		        Ps.setString(1, email);
 		        Ps.setString(2, password);
 		        Ps.setString(3, nome);
@@ -260,18 +179,6 @@ public class utenteDAO {
 		       } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
-		    } catch (SQLException e) {
-	            throw new RuntimeException(e);
-	        }
-		   finally {
-			    try {
-			        if (Ps != null) {
-			            Ps.close();
-			        }
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    }
-		  }
 		}
 	 
 }
