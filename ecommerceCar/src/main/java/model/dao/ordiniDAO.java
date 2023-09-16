@@ -280,8 +280,11 @@ public class ordiniDAO {
 	            	p.setColore(rs.getString(7));//nome_colore
 	            	p.setRuote(rs.getString(8));//ruote
 	            	p.setInterni(rs.getString(9));//interni
-
-	            	o.addProdotto(p);
+	            	
+	            	if (o != null) { // Check if o is not null before using it
+	                    o.addProdotto(p);
+	                }
+	            	
 	            }
 	           return ordini;
 	        } catch (SQLException e) {
