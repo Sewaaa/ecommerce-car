@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+import java.util.logging.Logger; 
 
 import model.object.ordine;
 import model.object.prodotto;
@@ -81,7 +81,8 @@ public class fatturaDAO {
 
 	           return ordine;
 		 } catch (SQLException e) {
-	            throw new RuntimeException(e);
+	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+			LOGGER.log(null, "context", e);
 	        }
 		  }
 	 
@@ -108,7 +109,8 @@ public class fatturaDAO {
 	           }
 	           return ordine;
 		} catch (SQLException e) {
-	            throw new RuntimeException(e);
+	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+			LOGGER.log(null, "context", e);
 	        }
 		  }
 }
