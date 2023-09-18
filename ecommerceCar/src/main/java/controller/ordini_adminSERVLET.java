@@ -40,7 +40,7 @@ public class ordini_adminSERVLET extends HttpServlet {
         	paginaJsp="/ordini_utenti.jsp";
         }
         ordiniDAO ordiniDAO=new ordiniDAO();
-        ArrayList<ordine> o=new ArrayList<>();
+        ArrayList<ordine> o;
        
         
         if( orderOption!=null  && (orderOption.equals("recenti") || orderOption.equals("vecchi")))
