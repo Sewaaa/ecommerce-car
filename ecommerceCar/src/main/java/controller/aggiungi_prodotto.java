@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+ 
+import java.util.logging.Logger; 
+
+
 import model.dao.prodottoDAO;
 
 @WebServlet("/aggiungi_prodotto")
@@ -32,8 +36,9 @@ public class aggiungi_prodotto extends HttpServlet {
 		
 			try {
 				prodottoDAO.InsertNewProdotto (nome,tipo,descrizione,data_rilascio,prezzo,brand,foto);
-			}  catch(Exception e) {
-  				e.printStackTrace();
+			}catch(Exception e) {
+				Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 			}
 		
 			  
