@@ -43,7 +43,7 @@ public class carrelloDAO {
 	            	p.setBrand(rs.getString(6));//nome_brand
 	            	if(rs.getString(2).equals("macchina"))
 	            	{
-	            		//System.out.print(rs.getString(7)+"\n");
+	            		
 	            		p.setColore(rs.getString(7)); 
 		        	    p.setRuote(rs.getString(8)); 
 		        	    p.setInterni(rs.getString(9)); 
@@ -54,8 +54,9 @@ public class carrelloDAO {
 	            }
 	           return carrello;
 		} catch (SQLException e) {
-	            throw new RuntimeException(e);
+			e.printStackTrace();
 	        }
+		 return null;
 		  }
 	 
 	 /*PRENDI CARRELLO CON SESSIONE */
@@ -92,14 +93,15 @@ public class carrelloDAO {
 		                carrello.add(p);
 		           	}
 				} catch (SQLException e) {
-		            throw new RuntimeException(e);
+					e.printStackTrace();
 		        }
 		           i++;
 			 }
 	           return carrello;
 	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
+	        	e.printStackTrace();
 	        }
+		 return null;
 			
 		  }
 	 
@@ -123,7 +125,7 @@ public class carrelloDAO {
 	           return;
 		 
 	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
+	        	e.printStackTrace();
 	        }
 		   
 		  }
@@ -150,7 +152,7 @@ public class carrelloDAO {
 	           return;
 		 
 	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
+	        	e.printStackTrace();
 	        }
 		  
 		  }
@@ -170,7 +172,7 @@ public class carrelloDAO {
 	           return;
 		 
 	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
+	        	e.printStackTrace();
 	        }
 		  
 	}
@@ -189,7 +191,7 @@ public class carrelloDAO {
 	           return;
 		 
 	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
+	        	e.printStackTrace();
 	        }
 		   
 	}
@@ -215,8 +217,9 @@ public class carrelloDAO {
 	           return result;
 		
 	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
+	        	e.printStackTrace();
 	        }
+		 return null;
 		   
 }
 }
