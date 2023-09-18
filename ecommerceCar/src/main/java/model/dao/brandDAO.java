@@ -25,8 +25,9 @@ public class brandDAO {
 	            }
 	           return lista_brand;
 		} catch (SQLException e) {
-	            throw new RuntimeException(e);
+			e.printStackTrace();
 	        }
+		return null;
 		  }
 	 /*Prendi il nome del brand sapendo id*/
 	 public String  getBrandFromId(String id_brand) {
@@ -44,8 +45,9 @@ public class brandDAO {
 	           return nome_brand;
 		      
 	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
+	        	e.printStackTrace();
 	        }
+		return null;
 		  }
 	}
 
