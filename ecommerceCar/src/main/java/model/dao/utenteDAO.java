@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Logger; 
+
 
 
 import model.object.*;
@@ -45,7 +47,8 @@ public class utenteDAO {
 	           }
 	           return utenti;
 	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
+	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 	        }
 		}
 	
@@ -69,7 +72,8 @@ public class utenteDAO {
 	           }
 	           return u;
 		} catch (SQLException e) {
-	            throw new RuntimeException(e);
+	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 	        }
 		  }
 	 
@@ -106,7 +110,8 @@ public class utenteDAO {
 	           }
 	           return u;
 		} catch (SQLException e) {
-	            throw new RuntimeException(e);
+	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 	        }
 		  }
 	 
@@ -123,7 +128,8 @@ public class utenteDAO {
 	           }
 	           return trovato;
 		} catch (SQLException e) {
-	            throw new RuntimeException(e);
+	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 	        }
 		  }
 	 
@@ -150,7 +156,8 @@ public class utenteDAO {
 	            }
 	           return;
 		} catch (SQLException e) {
-	            throw new RuntimeException(e);
+	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 	        }
 		  }
 	 
@@ -177,7 +184,8 @@ public class utenteDAO {
 		        Ps.executeUpdate();
 		        
 		       } catch (SQLException e) {
-	            throw new RuntimeException(e);
+	           Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 	        }
 		}
 	 
