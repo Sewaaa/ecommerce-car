@@ -2,7 +2,7 @@ package model.dao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.logging.Logger; 
 import model.object.*;
 
 public class prodottoDAO {
@@ -35,7 +35,8 @@ public class prodottoDAO {
 	           return lista_prodotti;
 		
 	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
+	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 	        }
 		   
 		  }
@@ -94,7 +95,8 @@ public class prodottoDAO {
 		        prodottoPs.setString(1, id);
 		        prodottoPs.executeUpdate();
 		    } catch (SQLException e) {
-	            throw new RuntimeException(e);
+	           Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 	        }
 		}
 
@@ -132,7 +134,8 @@ public class prodottoDAO {
 		        
 		       
 		    } catch (SQLException e) {
-	            throw new RuntimeException(e);
+	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 	        }
 		   
 		}
@@ -178,7 +181,8 @@ public class prodottoDAO {
 		           return lista_prodotti;
 			  
 	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
+	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 	        }
 		  
 		  }
@@ -210,7 +214,8 @@ public class prodottoDAO {
 	            }
 	           return p;
 	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
+	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 	        }
 		  
 		  }
@@ -229,7 +234,8 @@ public class prodottoDAO {
 	           rs.next();
 	           return rs.getString("tipo");
 	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
+	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 	        }
 		  
 		  }
@@ -262,7 +268,8 @@ public class prodottoDAO {
 	            }
 	           return lista_prodotti;
 	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
+	           Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 	        }
 		   
 }}
