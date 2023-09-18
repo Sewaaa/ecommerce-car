@@ -28,7 +28,7 @@ public class brandDAO {
 			Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
 			LOGGER.log(null, "context", e);
 	        }
-		return null;
+		
 		  }
 	 /*Prendi il nome del brand sapendo id*/
 	 public String  getBrandFromId(String id_brand) {
