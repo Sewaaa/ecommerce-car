@@ -3,7 +3,7 @@ package model.dao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.logging.Logger; 
 import model.object.*;
 
 public class brandDAO {
@@ -25,7 +25,8 @@ public class brandDAO {
 	            }
 	           return lista_brand;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+			LOGGER.log(null, "context", e);
 	        }
 		return null;
 		  }
@@ -45,7 +46,8 @@ public class brandDAO {
 	           return nome_brand;
 		      
 	        } catch (SQLException e) {
-	        	e.printStackTrace();
+	        	Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+			LOGGER.log(null, "context", e);
 	        }
 		return null;
 		  }
