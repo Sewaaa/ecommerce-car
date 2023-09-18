@@ -57,7 +57,7 @@ public class carrelloDAO {
 			Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
 			LOGGER.log(null, "context", e);
 	        }
-		 return null;
+		
 		  }
 	 
 	 /*PRENDI CARRELLO CON SESSIONE */
@@ -104,7 +104,7 @@ public class carrelloDAO {
 	        	Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
 				LOGGER.log(null, "context", e);
 	        }
-		 return null;
+		 
 			
 		  }
 	 
@@ -227,7 +227,7 @@ public class carrelloDAO {
 	        	Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
 			LOGGER.log(null, "context", e);
 	        }
-		 return null;
+		
 		   
 }
 }
