@@ -101,7 +101,8 @@ public class carrelloDAO {
 			 }
 	           return carrello;
 	        } catch (SQLException e) {
-	        	e.printStackTrace();
+	        	Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 	        }
 		 return null;
 			
