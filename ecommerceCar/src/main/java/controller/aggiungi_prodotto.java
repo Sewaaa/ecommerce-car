@@ -32,8 +32,8 @@ public class aggiungi_prodotto extends HttpServlet {
 		
 			try {
 				prodottoDAO.InsertNewProdotto (nome,tipo,descrizione,data_rilascio,prezzo,brand,foto);
-			} catch (Exception e) {
-				e.printStackTrace();
+			}  catch(Exception e) {
+  				LOGGER.log("context", e);
 			}
 		
 			  
