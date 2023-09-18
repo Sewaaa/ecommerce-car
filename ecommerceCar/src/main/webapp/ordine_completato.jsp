@@ -69,7 +69,6 @@
         </div>
 
         <%
-        String metodoDiPagamento = request.getParameter("metodo_di_pagamento");
         String prezzoTotale = request.getParameter("prezzo_totale");
         String prezzoNoIva = request.getParameter("prezzo_noiva");
 
@@ -78,7 +77,7 @@
         } else {
         %>
 	        <form action="crea_pdf" method="POST">
-	            <input type="hidden" name="metodo_di_pagamento" value="<%= metodoDiPagamento %>">
+	            <input type="hidden" name="metodo_di_pagamento" value="<%request.getParameter("metodo_di_pagamento")%>">
 	            <input type="hidden" name="id_ordine" value="<%=session.getAttribute("generatedOrderId")%>">
 	            <input type="hidden" name="nome" value="<%= session.getAttribute("nome") %>">
 	            <input type="hidden" name="cognome" value="<%= session.getAttribute("cognome") %>">
