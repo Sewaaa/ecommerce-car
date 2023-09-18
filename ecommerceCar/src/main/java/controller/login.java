@@ -88,9 +88,7 @@ public class login extends HttpServlet {
 						}
 					}
 				}
-				else {
-					
-				}
+
 				
 				
 				request.getServletContext().getRequestDispatcher("/homeSERVLET").forward(request, response);
