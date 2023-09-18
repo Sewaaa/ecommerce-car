@@ -18,8 +18,7 @@ public class fatturaDAO {
 	 public  ordine getInfoOrdine(String email,String id_ordine) {
 		 ResultSet rs=null;
 		 try (Connection con = ConPool.getConnection();
-		     PreparedStatement ps = con.prepareStatement("SELECT\r\n"
-						+ "    ordini.data_ordine,\r\n"
+		     PreparedStatement ps = con.prepareStatement("SELECT\ ordini.data_ordine,\r\n"
 						+ "    UTENTI.email,\r\n"
 						+ "    UTENTI.nome,\r\n"
 						+ "    ACQUISTI.tipo,\r\n"
