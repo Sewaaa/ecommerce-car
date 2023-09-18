@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
+import java.util.logging.Logger; 
 import model.object.ordine;
 import model.object.prodotto;
 
@@ -42,7 +42,8 @@ public class ordiniDAO {
 
 	        return generatedOrderId;
 	} catch (SQLException e) {
-	            throw new RuntimeException(e);
+	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+			LOGGER.log(null, "context", e);
 	        }
 	}
 
@@ -71,7 +72,8 @@ public class ordiniDAO {
 	            }
 	           return;
 		} catch (SQLException e) {
-	            throw new RuntimeException(e);
+	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+			LOGGER.log(null, "context", e);
 	        }
 		  }
 	 
@@ -97,7 +99,8 @@ public class ordiniDAO {
 	            }
 	           return;
 		} catch (SQLException e) {
-	            throw new RuntimeException(e);
+	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 	        }
 		  }
 	 
@@ -122,7 +125,8 @@ public class ordiniDAO {
                     	  ps=psLocal;
                           ps.setString(1, emailFiltrata);
                     } catch (SQLException e) {
-        	            throw new RuntimeException(e);
+        	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
         	        }
                 } else {
                 	
@@ -130,7 +134,8 @@ public class ordiniDAO {
                     try(PreparedStatement psLocal = con.prepareStatement(query)){
                     	ps=psLocal;
                     }catch (SQLException e) {
-                    throw new RuntimeException(e);
+                    Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
                     }
                 }
 			   ArrayList<ordine> ordini = new ArrayList<ordine>();
@@ -164,7 +169,8 @@ public class ordiniDAO {
                        o=new ordine(orderId,dataOrdine,nome,cognome,emailUtente,prezzoTot,metodo);
                        ordini.add(o);
 			} catch (SQLException e) {
-	            throw new RuntimeException(e);
+	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 	        }
                    }
                    
@@ -188,7 +194,8 @@ public class ordiniDAO {
 	           return ordini;
 		
 	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
+	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 	        }
 		  }
 	 
@@ -268,7 +275,8 @@ public class ordiniDAO {
                        o=new ordine(orderId,dataOrdine,nome, cognome,emailUtente,prezzoTot,metodo);
                        ordini.add(o);
 			} catch (SQLException e) {
-	            throw new RuntimeException(e);
+	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 	        }
                    }
                    
@@ -291,7 +299,8 @@ public class ordiniDAO {
 	            }
 	           return ordini;
 	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
+	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 	        }
 		 finally {
 		        // Close the PreparedStatement and ResultSet in a finally block to ensure they are always closed.
