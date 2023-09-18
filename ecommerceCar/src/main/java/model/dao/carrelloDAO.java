@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.logging.Logger; 
 import model.object.*;
 
 
@@ -54,7 +54,8 @@ public class carrelloDAO {
 	            }
 	           return carrello;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+			LOGGER.log(null, "context", e);
 	        }
 		 return null;
 		  }
@@ -93,7 +94,8 @@ public class carrelloDAO {
 		                carrello.add(p);
 		           	}
 				} catch (SQLException e) {
-					e.printStackTrace();
+				Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 		        }
 		           i++;
 			 }
@@ -125,7 +127,8 @@ public class carrelloDAO {
 	           return;
 		 
 	        } catch (SQLException e) {
-	        	e.printStackTrace();
+	        	Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+			LOGGER.log(null, "context", e);
 	        }
 		   
 		  }
@@ -152,7 +155,8 @@ public class carrelloDAO {
 	           return;
 		 
 	        } catch (SQLException e) {
-	        	e.printStackTrace();
+	        	Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+			LOGGER.log(null, "context", e);
 	        }
 		  
 		  }
@@ -172,7 +176,8 @@ public class carrelloDAO {
 	           return;
 		 
 	        } catch (SQLException e) {
-	        	e.printStackTrace();
+	        	Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+			LOGGER.log(null, "context", e);
 	        }
 		  
 	}
@@ -191,7 +196,8 @@ public class carrelloDAO {
 	           return;
 		 
 	        } catch (SQLException e) {
-	        	e.printStackTrace();
+	        	Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+			LOGGER.log(null, "context", e);
 	        }
 		   
 	}
@@ -217,7 +223,8 @@ public class carrelloDAO {
 	           return result;
 		
 	        } catch (SQLException e) {
-	        	e.printStackTrace();
+	        	Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+			LOGGER.log(null, "context", e);
 	        }
 		 return null;
 		   
