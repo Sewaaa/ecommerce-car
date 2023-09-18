@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.logging.Logger; 
 
 public class personalizzazioneDAO {
 	
@@ -55,7 +55,8 @@ public class personalizzazioneDAO {
 	           return id_personalizzazioni;
 		
 	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
+	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 	        }
 		  
 		  }
@@ -87,7 +88,8 @@ public class personalizzazioneDAO {
 	           return id_personalizzazioni;
 		
 	        } catch (SQLException e) {
-	            throw new RuntimeException(e);
+	            Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
+				LOGGER.log(null, "context", e);
 	        }
 		  
 	 }
