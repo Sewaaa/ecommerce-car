@@ -176,7 +176,7 @@ public class carrelloDAO {
 	         
 	            ps.setString(1, id_prodotto);
 	            ps.executeUpdate();
-	           return;
+	          
 		 
 	        } catch (SQLException e) {
 	        	Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
