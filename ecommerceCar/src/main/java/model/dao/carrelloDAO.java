@@ -154,7 +154,7 @@ public class carrelloDAO {
 	            if (ps.executeUpdate() != 1) {
 	                throw new RuntimeException("INSERT error.");  
 	            }
-	           return;
+	           
 		 
 	        } catch (SQLException e) {
 	        	Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);     
