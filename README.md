@@ -1,29 +1,28 @@
 # ecommerceCar
 
-**ecommerceCar** è un progetto di gruppo che simula un sito web di e-commerce per la vendita di macchine di lusso. Il sito offre la possibilità di esplorare il catalogo delle auto, applicare filtri e ricerche, personalizzare i veicoli e simulare il processo di pagamento.
+**ecommerceCar** is a group project that simulates an e-commerce website for the sale of luxury cars. The site allows users to explore the car catalog, apply filters and searches, customize vehicles, and simulate the payment process.
 
-## Funzionalità principali
+## Main Features
 
-- **Catalogo auto:** visualizzazione delle auto di lusso disponibili, con la possibilità di filtrare e ordinare i risultati per marca, modello, prezzo e altre specifiche.
-- **Ricerca avanzata:** motore di ricerca che permette di trovare veicoli specifici in base a diversi criteri (prezzo, anno, cilindrata, ecc.).
-- **Personalizzazione:** possibilità di configurare l’auto scelta con vari optional (colori, interni, motore, ecc.).
-- **Simulazione di pagamento:** processo di checkout che simula un pagamento e conferma l'acquisto.
+- **Car Catalog:** View available luxury cars with the ability to filter and sort results by brand, model, price, and other specifications.
+- **Advanced Search:** Search engine that allows users to find specific vehicles based on various criteria (price, year, engine size, etc.).
+- **Customization:** Ability to configure the selected car with various options (colors, interior, engine, etc.).
+- **Payment Simulation:** Checkout process that simulates a payment and confirms the purchase.
 
-## Tecnologie utilizzate
+## Technologies Used
 
 - **Backend:**
   - Java
   - JSP (JavaServer Pages)
-  - MySQL per la gestione del database
-  - Sonar per l'analisi statica del codice e la qualità del software
+  - MySQL for database management
+  - Sonar for static code analysis and software quality
 
 - **Frontend:**
-  - HTML e CSS per la struttura e il design del sito
-  - JavaScript per l'interattività lato client
+  - HTML and CSS for site structure and design
+  - JavaScript for client-side interactivity
 
-## Requisiti di sistema
+## System Requirements
 
-- **Java:** JDK 8 o superiore
-- **MySQL:** versione 8.0 o superiore
-- **Tomcat:** server Apache Tomcat 9.0 o superiore
-
+- **Java:** JDK 8 or higher
+- **MySQL:** version 8.0 or higher
+- **Tomcat:** Apache Tomcat 9.0 or higher
