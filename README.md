@@ -1,5 +1,5 @@
 <p align="left">
-  <img src="src/main/webapp/imgs/logotswhome.png" alt="ecommerceCar Logo" width="50" height="50">
+  <img src="ecommerceCar/src/main/webapp/imgs/logotswhome.png" alt="ecommerceCar Logo" width="50" height="50">
   <span style="font-size:2em; font-weight:bold; margin-left: 10px;">ecommerceCar</span>
 </p>
 
