@@ -1,4 +1,4 @@
-# ![ecommerceCar Logo](src/main/webapp/imgs/logotswhome.png)
+# ![ecommerceCar Logo](ecommerceCar/src/main/webapp/imgs/logotswhome.png)
 
 # ecommerceCar
 
