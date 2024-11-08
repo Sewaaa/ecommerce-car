@@ -1,10 +1,5 @@
-<p align="left">
-  <img src="ecommerceCar/src/main/webapp/imgs/logotswhome.png" alt="ecommerceCar Logo" width="50" height="50">
-  <span style="font-size:2em; font-weight:bold; margin-left: 10px;">ecommerceCar</span>
-</p>
-
-**ecommerceCar** is a group project that simulates an e-commerce website for the sale of luxury cars...
-
+# ![ecommerceCar Logo](ecommerceCar/src/main/webapp/imgs/logotswhome.png)
+# ecommerceCar
 
 **ecommerceCar** is a group project that simulates an e-commerce website for the sale of luxury cars. The site allows users to explore the car catalog, apply filters and searches, customize vehicles, and simulate the payment process.
 
