@@ -1,3 +1,5 @@
+# ![ecommerceCar Logo](src/main/webapp/imgs/logotswhome.png)
+
 # ecommerceCar
 
 **ecommerceCar** is a group project that simulates an e-commerce website for the sale of luxury cars. The site allows users to explore the car catalog, apply filters and searches, customize vehicles, and simulate the payment process.
